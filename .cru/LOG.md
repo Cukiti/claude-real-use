@@ -11,3 +11,9 @@
 - Queda: T-010 sigue bloqueada (la CLI responde "OAuth session expired"); después T-012 (crear repo en GitHub y hacer push) y T-013.
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-010 — ya hice /login en la CLI"
+
+## 2026-10-17 · Prueba en sesión real (T-010)
+- Hecho: T-010. Con la CLI ya autenticada: el hook inyecta el estado correcto, se listan 8 skills y 3 agentes (ahorro y panel solo los invoca el usuario), y /real-use:pendientes corrió en contexto aislado con explorador (Haiku) y devolvió un informe correcto.
+- Queda: T-012 (crear el repo en GitHub y hacer push); después T-015 (CI en verde) y T-013 (probar en un proyecto real).
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-012 — ya creé el repo vacío en GitHub: <url>"
