@@ -47,6 +47,24 @@ Explorar el código, leer logs, correr suites enteras: a un **subagente** (conte
 ### 7. Cierra cada sesión
 Antes de irte: estado escrito, cabos sueltos listados, commit decidido y una frase lista para retomar (`/real-use:cerrar`). Así no se acumulan sesiones abiertas a medias.
 
+## "Eres un experto en…": qué funciona de verdad
+
+Anthropic confirma que asignar un rol ayuda: incluso una frase enfoca el comportamiento y el tono. Pero el título por sí solo es la parte débil. Lo que cambia el resultado es lo que ese experto **sabe mirar**, y Claude lo aplica mejor cuando se lo das explícitamente:
+
+| Débil | Fuerte |
+|---|---|
+| "Eres un diseñador gráfico experto. Hazlo bonito." | "Escala tipográfica de 2 familias, espaciado en múltiplos de 8, contraste AA, estados vacío/error/cargando. Evita degradados morados, botones píldora y tarjetas de tres en fila. Haz una captura en 360 px y compárala." |
+| "Actúa como un QA senior." | "Prueba vacío, máximo+1, sin red, cerrar a mitad de guardado y doble toque. Cada fallo, con un test que lo reproduzca." |
+| "NUNCA uses X." | "No uses X porque <razón>." Con el porqué, Claude generaliza a casos que no listaste. |
+
+En la práctica:
+1. **Rol en una línea** (sí, sirve) + **criterios comprobables** + **antipatrones concretos** + **cómo se verifica**.
+2. **Explica el porqué** de las reglas importantes.
+3. **Ejemplos** (3–5, variados) cuando importa el formato o el estilo.
+4. **El experto revisa en contexto fresco**: quien creó algo no es buen juez de su propio trabajo.
+
+`/real-use:experto` hace esto con 9 lentes listas (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento). Solo carga la lente que hace falta, así que tener muchas no cuesta tokens.
+
 ## Errores que queman tokens (y su arreglo)
 
 | Error | Arreglo |
@@ -94,6 +112,8 @@ El plugin `real-use` convierte esta guía en comandos:
 
 | Comando | Hábito |
 |---|---|
+| `/real-use:hacer <lo que sea>` | 2, 3, 5: convierte una petición vaga en una tarea completa y la ejecuta |
+| `/real-use:experto [lente]` | Criterio experto real: criterios, antipatrones y verificación |
 | `/real-use:iniciar` | 1, 3: estado en archivos, metodología, verificación |
 | `/real-use:spec` | 4: entrevista → spec → tareas |
 | `/real-use:siguiente` | 2, 5, 6: una tarea, enrutada al coste justo, verificada |
@@ -101,7 +121,7 @@ El plugin `real-use` convierte esta guía en comandos:
 | `/real-use:verificar` | 3, 6: verificación + revisor adversarial |
 | `/real-use:paralelo` | 6: tareas independientes en sesiones con worktree |
 | `/real-use:pendientes` | 7: cabos sueltos convertidos en tareas |
-| `/real-use:cerrar` | 7: cierre sin pendientes al aire |
+| `/real-use:cerrar` | 7: cierre sin pendientes al aire, y lo aprendido convertido en reglas |
 | `/real-use:ahorro` | Auditoría de tokens de tu configuración |
 | `/real-use:panel` | Status line con la tarea en curso y el % de contexto |
 
@@ -110,7 +130,7 @@ Y un hook que, al abrir una sesión en un proyecto con `.cru/`, le da a Claude e
 ## Un día típico
 
 1. **Abres sesión** en el proyecto. Claude ya conoce la fase, la tarea en curso y lo que quedó pendiente ayer.
-2. `/real-use:siguiente` → te ofrece 2 o 3 formas de hacer la tarea (coste bajo, medio o alto). Eliges una.
+2. `/real-use:siguiente` (o `/real-use:hacer <lo que se te ocurra>`) → te ofrece 2 o 3 formas de hacer la tarea (coste bajo, medio o alto). Eliges una.
 3. Claude trabaja; ves la evidencia de la verificación. Si encuentra otros problemas, los anota como tareas en lugar de desviarse.
 4. Tarea hecha → `/clear` (gratis) → `/real-use:siguiente`. Una tarea por contexto.
 5. ¿Hay una feature grande? `/real-use:spec`, y la implementas en una sesión nueva.
@@ -122,6 +142,7 @@ Una vez por semana: `/real-use:pendientes` (que no se acumule nada) y `/real-use
 ## Fuentes
 
 - [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)
+- [Prompting best practices (roles, contexto, ejemplos, diseño frontend)](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 - [Manage costs effectively](https://code.claude.com/docs/en/costs)
 - [Keep Claude working toward a goal (/goal)](https://code.claude.com/docs/en/goal)
 - [Skills](https://code.claude.com/docs/en/skills) · [Subagents](https://code.claude.com/docs/en/sub-agents) · [Hooks](https://code.claude.com/docs/en/hooks) · [Plugin reference](https://code.claude.com/docs/en/plugins-reference)

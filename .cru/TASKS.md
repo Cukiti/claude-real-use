@@ -33,3 +33,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-012 Publicar en GitHub (privado): https://github.com/Cukiti/claude-real-use · verif: push de main a origin · ✔ 2026-10-17
 
 - [x] T-015 CI en GitHub con `npm test` · verif: run 39080336016, ubuntu-latest y windows-latest en verde · ✔ 2026-10-17
+- [x] T-017 Skill experto + 9 lentes (criterios, antipatrones, entrega, verificación) y revisor que acepta lentes · verif: sesión real `/real-use:experto qa revisar statusline.js` encontró 4 fallos reales · ✔ 2026-10-17
+- [x] T-018 Skill hacer: petición vaga → ficha de tarea → ruta → ejecución · verif: validate + test de estructura · ✔ 2026-10-17
+- [x] T-019 Paso "Aprender: corregir en la fuente" en /real-use:cerrar · ✔ 2026-10-17
+- [x] T-020 Tests de estructura (rutas, lentes, frontmatter) y arreglo de los 4 fallos de QA en statusline/session-start · verif: `npm test` 17/17 · ✔ 2026-10-17

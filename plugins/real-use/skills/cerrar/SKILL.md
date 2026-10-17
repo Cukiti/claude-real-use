@@ -1,6 +1,6 @@
 ---
 name: cerrar
-description: Cierra la sesión sin cabos sueltos. Actualiza .cru/TASKS.md y .cru/LOG.md, lista lo que queda abierto (cambios sin commit, tareas a medias, sesiones/ramas), propone commit y deja un prompt exacto para retomar. Usar cuando el usuario diga "terminamos", "cierra", "por hoy", o antes de /clear.
+description: Cierra la sesión sin cabos sueltos. Actualiza .cru/TASKS.md y .cru/LOG.md, lista lo que queda abierto (cambios sin commit, tareas a medias, sesiones/ramas), propone commit, convierte las correcciones repetidas en reglas duraderas (CLAUDE.md, hook, lente o skill) y deja un prompt exacto para retomar. Usar cuando el usuario diga "terminamos", "cierra", "por hoy", o antes de /clear.
 ---
 
 # Cerrar la sesión
@@ -21,7 +21,21 @@ Una sesión no termina cuando el usuario se va: termina cuando el estado está e
 - `LOG.md`: añade una entrada al final con el formato de la plantilla (Hecho / Queda / Decisiones / Prompt para retomar). El prompt para retomar es una frase que el usuario pueda pegar en una sesión nueva, p. ej. `"/real-use:siguiente T-007 — ya está el test que falla en tests/save_test.gd"`.
 - Si la fase del proyecto cambió (hito cumplido), actualiza `Fase:` en `PROJECT.md`.
 
-## 3. Presentar cabos sueltos como opciones
+## 3. Aprender: corregir en la fuente
+
+Repasa la sesión buscando lo que **costó turnos**: correcciones del usuario, el mismo error dos veces, comandos que fallaron por un detalle del entorno, información que tuviste que buscar y que la próxima sesión volverá a necesitar. Para cada caso, propón **un** arreglo duradero en el sitio más barato:
+
+| Si el problema fue… | Arreglo |
+|---|---|
+| Una convención o un comando que Claude no podía deducir | Una línea en el `CLAUDE.md` del proyecto (que siga por debajo de ~200 líneas) |
+| Algo que debe pasar siempre, sin excepción (formatear, no tocar una carpeta) | Un hook (skill `update-config`) |
+| Un criterio de calidad que se olvidó | Añadirlo a la lente correspondiente o a un `REVIEW.md` del proyecto |
+| Un flujo de varios pasos que se repite | Una skill del proyecto en `.claude/skills/` |
+| Una decisión que se reabrió | Una entrada en `DECISIONS.md` |
+
+Si no hubo nada, no inventes. Si hubo, inclúyelo en las opciones del paso siguiente (como multiSelect) y muestra el texto exacto que se añadiría.
+
+## 4. Presentar cabos sueltos como opciones
 
 Muestra una lista corta de lo que queda abierto y ofrece con `AskUserQuestion` qué hacer, recomendado primero, por ejemplo:
 - Hacer commit de los cambios (mensaje propuesto) / dejarlos sin commit.
@@ -30,6 +44,6 @@ Muestra una lista corta de lo que queda abierto y ofrece con `AskUserQuestion` q
 
 No hagas commit, borres ramas ni empujes nada sin que el usuario lo elija.
 
-## 4. Despedida
+## 5. Despedida
 
 Máximo 6 líneas: tareas cerradas hoy, progreso del hito (`x/y`), siguiente tarea, y el prompt para retomar. Recomienda `/clear` (o una sesión nueva) antes de la siguiente tarea no relacionada: el estado ya está a salvo en `.cru/`.

@@ -18,3 +18,9 @@
 ## D-004 · 2026-10-17 · Mods aplazados
 - Contexto: los mods requieren Claude Code ≥ 2.1.287; la versión instalada es 2.1.283 y su API puede cambiar entre versiones.
 - Elegida: status line (estable) ahora; mod de "tarea actual" como T-016.
+
+## D-005 · 2026-10-17 · Lentes expertas en vez de "roles"
+- Contexto: es habitual escribir "eres un experto en X". Anthropic confirma que un rol enfoca el tono, pero el resultado cambia con criterios, el porqué, ejemplos y verificación.
+- Opciones: un subagente por especialidad; una skill por especialidad; una skill con lentes en archivos.
+- Elegida: una sola skill (`experto`) con lentes en `referencias/lentes/`. Solo una descripción entra en el listado de cada sesión y cada lente se lee bajo demanda, así que añadir lentes no cuesta tokens fijos.
+- Consecuencias: cada lente debe tener las secciones que comprueba `tests/estructura.test.js`.

@@ -23,6 +23,8 @@ claude-real-use/
 ├── tests/                       ← tests de los scripts (npm test)
 └── plugins/real-use/            ← el plugin
     ├── skills/
+    │   ├── hacer/               /real-use:hacer      cualquier petición vaga → tarea completa → hecha
+    │   ├── experto/             /real-use:experto    lentes expertas: criterios, antipatrones, verificación
     │   ├── iniciar/             /real-use:iniciar    detecta, entrevista, elige metodología, crea .cru/
     │   ├── spec/                /real-use:spec       idea vaga → spec → tareas verificables
     │   ├── siguiente/           /real-use:siguiente  toma la siguiente tarea, la enruta, la verifica
@@ -36,7 +38,7 @@ claude-real-use/
     ├── agents/                  explorador (Haiku, solo lectura) · verificador (Sonnet) · revisor (adversarial)
     ├── hooks/                   al iniciar sesión, inyecta el estado de .cru/ (no hace nada si no existe)
     ├── scripts/                 session-start.js (hook) · statusline.js (panel)
-    ├── referencias/             metodologías · recetas de verificación por stack · catálogo de MCPs/plugins
+    ├── referencias/             metodologías · verificación por stack · catálogo · lentes/ (9 lentes expertas)
     └── plantillas/              PROJECT · TASKS · LOG · DECISIONS
 ```
 
@@ -73,6 +75,7 @@ claude --plugin-dir ./claude-real-use/plugins/real-use
 ## Uso diario
 
 ```text
+/real-use:hacer quiero que el menú se vea más profesional            ← cualquier petición, en tus palabras
 /real-use:iniciar un roguelike de cartas para móvil en Godot      ← una vez por proyecto
 /real-use:siguiente                                              ← cada sesión
 /real-use:spec sistema de guardado en la nube                    ← antes de una feature grande

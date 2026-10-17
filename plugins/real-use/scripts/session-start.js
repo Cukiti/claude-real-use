@@ -12,7 +12,8 @@ const MAX_CHARS = 1800;
 
 function readStdin() {
   try {
-    return JSON.parse(fs.readFileSync(0, "utf8") || "{}");
+    const data = JSON.parse(fs.readFileSync(0, "utf8") || "{}");
+    return data && typeof data === "object" && !Array.isArray(data) ? data : {};
   } catch {
     return {};
   }

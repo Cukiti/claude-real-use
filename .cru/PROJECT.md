@@ -4,7 +4,7 @@
 - Tipo: librería/CLI (plugin de Claude Code)
 - Stack: Markdown (skills/agentes), Node.js (hooks y status line), JSON (manifiestos)
 - Metodología: TDD + semver
-- Fase: Publicado (v0.2.0)
+- Fase: Publicado (v0.3.0)
 - Verificación: `npm test && npm run validate`
 
 ## Visión (una frase)

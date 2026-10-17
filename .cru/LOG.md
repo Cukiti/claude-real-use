@@ -23,3 +23,9 @@
 - Queda: T-013 (usar /real-use:iniciar en un proyecto real, p. ej. Colmadon, y ajustar las skills); T-014 (evals de activación); T-016 (mod) cuando Claude Code ≥ 2.1.287.
 - Decisiones: el repo es privado (elección del usuario).
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-17 · v0.3: lentes expertas, /hacer y aprendizaje
+- Hecho: T-017 a T-020. `/real-use:experto qa` en una sesión real encontró 4 fallos en statusline.js; los reproduje con tests y los arreglé (`npm test` 17/17).
+- Queda: T-013 (probar en un proyecto real); T-014 (evals de activación, ahora con hacer y experto, que compiten por las peticiones vagas).
+- Decisiones: D-005.
+- Prompt para retomar: "/real-use:siguiente T-013"

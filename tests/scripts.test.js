@@ -114,3 +114,46 @@ test("statusline sin .cru ni contexto solo muestra el modelo", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "nocru-"));
   assert.equal(run("statusline.js", { model: { display_name: "Opus" }, cwd: dir }), "Opus");
 });
+
+// Casos encontrados por /real-use:experto qa sobre statusline.js
+test("statusline usa input.cwd cuando no hay workspace", () => {
+  const dir = project({ "TASKS.md": TASKS });
+  assert.equal(run("statusline.js", { cwd: dir }), "T-003 Guardado local");
+});
+
+test("statusline: umbrales exactos de aviso", () => {
+  const ctx = (p) => run("statusline.js", { context_window: { used_percentage: p }, cwd: os.tmpdir() });
+  assert.equal(ctx(49.4), "ctx 49%");
+  assert.match(ctx(50), /^ctx 50% · \/compact/);
+  assert.match(ctx(74.4), /\/compact/);
+  assert.match(ctx(75), /cerrar/);
+});
+
+test("statusline ignora porcentajes no numéricos y acota el rango", () => {
+  const ctx = (p) => run("statusline.js", { context_window: { used_percentage: p }, cwd: os.tmpdir() });
+  assert.equal(ctx("abc"), "");
+  assert.equal(ctx(-5), "ctx 0%");
+  assert.match(ctx(130), /^ctx 100%/);
+});
+
+test("statusline no toma el título de la línea siguiente si [~] está vacía", () => {
+  const dir = project({ "TASKS.md": "- [~]\n- [ ] T-004 Pausa\n" });
+  assert.equal(run("statusline.js", { cwd: dir }), "sin tarea en curso");
+});
+
+test("statusline trunca sin partir emojis", () => {
+  const dir = project({ "TASKS.md": `- [~] ${"😀".repeat(60)}\n` });
+  const out = run("statusline.js", { cwd: dir });
+  assert.ok(!/[\uD800-\uDFFF](?![\uDC00-\uDFFF])/.test(out.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "")), "sin sustitutos sueltos");
+  assert.equal(Array.from(out).length, 48);
+});
+
+test("los scripts toleran stdin null o malformado", () => {
+  const dir = project({ "TASKS.md": TASKS });
+  for (const raw of ["null", "[]", "no-json"]) {
+    const env = { ...process.env, CLAUDE_PROJECT_DIR: dir };
+    const opts = { input: raw, env, encoding: "utf8", cwd: dir };
+    assert.equal(execFileSync("node", [path.join(SCRIPTS, "statusline.js")], opts), "T-003 Guardado local", raw);
+    assert.match(execFileSync("node", [path.join(SCRIPTS, "session-start.js")], opts), /T-003/, raw);
+  }
+});
