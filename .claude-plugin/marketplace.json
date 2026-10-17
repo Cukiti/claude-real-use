@@ -1,0 +1,12 @@
+{
+  "name": "real-use",
+  "owner": { "name": "Anderson Kayle" },
+  "description": "Claude Real Use: un sistema para usar Claude Code de verdad, terminando productos sin quemar tokens.",
+  "plugins": [
+    {
+      "name": "real-use",
+      "source": "./plugins/real-use",
+      "description": "Sistema de trabajo para Claude Code: memoria del proyecto en archivos, enrutamiento de tareas a modelo/agente/effort, cierre de sesión sin cabos sueltos y ahorro de tokens."
+    }
+  ]
+}
