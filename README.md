@@ -56,10 +56,10 @@ claude plugin marketplace add ./claude-real-use
 claude plugin install real-use@real-use --scope user
 ```
 
-Desde GitHub, una vez publicado el repo:
+Desde GitHub (el repo es privado: necesitas acceso y git autenticado, p. ej. con `gh auth login`):
 
 ```text
-/plugin marketplace add <usuario>/claude-real-use
+/plugin marketplace add Cukiti/claude-real-use
 /plugin install real-use@real-use
 /reload-plugins
 ```
