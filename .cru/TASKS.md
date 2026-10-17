@@ -1,0 +1,32 @@
+# Tareas
+
+<!--
+Formato (lo lee el hook de inicio de sesión, no lo cambies):
+Marcas: `[ ]` pendiente · `[~]` en curso · `[!]` bloqueada · `[x]` hecha
+Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
+-->
+
+## En curso
+
+## Pendiente
+- [ ] T-013 Probar /real-use:iniciar en un proyecto real (p. ej. Colmadon) y ajustar las skills con lo aprendido · hecho: .cru/ creado sin correcciones manuales y una tarea cerrada con siguiente+cerrar · verif: LOG.md del proyecto con la sesión
+- [ ] T-014 Evals de activación de skills con `claude plugin eval` · hecho: cada skill se activa con 3 frases típicas y no con 3 ajenas · verif: `claude plugin eval ./plugins/real-use`
+- [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
+
+## Bloqueado
+- [!] T-010 Probar el plugin cargado en una sesión real (hook + skills visibles) · hecho: el contexto de inicio aparece y /real-use:* se listan · verif: `claude --plugin-dir ./plugins/real-use` · bloqueado por: la sesión OAuth de la CLI está caducada (ejecutar `claude` → /login)
+- [!] T-011 Mover el repositorio a una carpeta permanente · hecho: repo fuera de la carpeta temporal de la sesión · verif: `git status` en la nueva ruta · bloqueado por: elegir carpeta (usuario)
+- [!] T-012 Publicar en GitHub · hecho: `/plugin marketplace add <usuario>/claude-real-use` instala · verif: instalación desde otra máquina o sesión · bloqueado por: crear el repo remoto (usuario)
+- [!] T-015 CI en GitHub que ejecute `npm test` (workflow ya escrito en .github/workflows/test.yml) · hecho: CI verde en el primer push · verif: estado del check en GitHub · bloqueado por: T-012
+- [!] T-016b Requisito del mod: Claude Code ≥ 2.1.287 · bloqueado por: versión instalada 2.1.283 (`claude update`)
+
+## Hecho
+- [x] T-001 Investigar documentación y blogs de Anthropic · ✔ 2026-10-17
+- [x] T-002 Manifiestos de plugin y marketplace · verif: `claude plugin validate` · ✔ 2026-10-17
+- [x] T-003 Hook SessionStart que inyecta el estado de .cru/ · ✔ 2026-10-17
+- [x] T-004 Skills iniciar, spec, siguiente, enrutar, verificar, pendientes, cerrar, ahorro · ✔ 2026-10-17
+- [x] T-005 Subagentes explorador, verificador, revisor · ✔ 2026-10-17
+- [x] T-006 GUIA.md, metodologías y catálogo · ✔ 2026-10-17
+- [x] T-007 Recetas de verificación por stack · ✔ 2026-10-17
+- [x] T-008 Skills paralelo y panel + status line · ✔ 2026-10-17
+- [x] T-009 Tests de los scripts (`npm test`) y PROMPTS.md · ✔ 2026-10-17

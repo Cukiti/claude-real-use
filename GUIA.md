@@ -99,11 +99,25 @@ El plugin `real-use` convierte esta guía en comandos:
 | `/real-use:siguiente` | 2, 5, 6: una tarea, enrutada al coste justo, verificada |
 | `/real-use:enrutar` | 5, 6: qué modelo/effort/agente/sesión usar |
 | `/real-use:verificar` | 3, 6: verificación + revisor adversarial |
+| `/real-use:paralelo` | 6: tareas independientes en sesiones con worktree |
 | `/real-use:pendientes` | 7: cabos sueltos convertidos en tareas |
 | `/real-use:cerrar` | 7: cierre sin pendientes al aire |
 | `/real-use:ahorro` | Auditoría de tokens de tu configuración |
+| `/real-use:panel` | Status line con la tarea en curso y el % de contexto |
 
-Y un hook que, al abrir una sesión en un proyecto con `.cru/`, le da a Claude el estado actual en unas pocas líneas (y no hace nada en proyectos sin `.cru/`).
+Y un hook que, al abrir una sesión en un proyecto con `.cru/`, le da a Claude el estado actual en unas pocas líneas (y no hace nada en proyectos sin `.cru/`). Hay más prompts listos en [PROMPTS.md](PROMPTS.md).
+
+## Un día típico
+
+1. **Abres sesión** en el proyecto. Claude ya conoce la fase, la tarea en curso y lo que quedó pendiente ayer.
+2. `/real-use:siguiente` → te ofrece 2 o 3 formas de hacer la tarea (coste bajo, medio o alto). Eliges una.
+3. Claude trabaja; ves la evidencia de la verificación. Si encuentra otros problemas, los anota como tareas en lugar de desviarse.
+4. Tarea hecha → `/clear` (gratis) → `/real-use:siguiente`. Una tarea por contexto.
+5. ¿Hay una feature grande? `/real-use:spec`, y la implementas en una sesión nueva.
+6. ¿Hay tres tareas independientes? `/real-use:paralelo`, y mientras tanto tú revisas.
+7. Antes de irte: `/real-use:cerrar`. Mañana empiezas en el paso 1 sin explicarle nada.
+
+Una vez por semana: `/real-use:pendientes` (que no se acumule nada) y `/real-use:ahorro` si notas que el límite se gasta rápido.
 
 ## Fuentes
 

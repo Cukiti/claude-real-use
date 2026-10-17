@@ -1,7 +1,7 @@
 {
   "name": "real-use",
   "displayName": "Real Use",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Memoria del proyecto en archivos (.cru/), enrutamiento de tareas, verificación obligatoria y cierre de sesión sin pendientes.",
   "author": { "name": "Anderson Kayle" },
   "license": "MIT",

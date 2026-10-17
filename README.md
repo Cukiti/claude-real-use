@@ -17,7 +17,10 @@ Se apoya en lo que publica Anthropic. La explicación completa está en **[GUIA.
 ```
 claude-real-use/
 ├── GUIA.md                      ← cómo usar Claude de verdad (con fuentes)
+├── PROMPTS.md                   ← prompts listos para copiar y pegar
 ├── plantillas-usuario/          ← bloque recomendado para tu ~/.claude/CLAUDE.md
+├── .cru/                        ← este repo usa su propio sistema (ejemplo real)
+├── tests/                       ← tests de los scripts (npm test)
 └── plugins/real-use/            ← el plugin
     ├── skills/
     │   ├── iniciar/             /real-use:iniciar    detecta, entrevista, elige metodología, crea .cru/
@@ -27,10 +30,13 @@ claude-real-use/
     │   ├── verificar/           /real-use:verificar  verificación + revisor adversarial
     │   ├── pendientes/          /real-use:pendientes cabos sueltos → tareas
     │   ├── cerrar/              /real-use:cerrar     cierre de sesión sin pendientes
-    │   └── ahorro/              /real-use:ahorro     auditoría de tokens de tu configuración
+    │   ├── paralelo/            /real-use:paralelo   tareas independientes → sesiones en worktrees
+    │   ├── ahorro/              /real-use:ahorro     auditoría de tokens de tu configuración
+    │   └── panel/               /real-use:panel      status line: tarea en curso + % de contexto
     ├── agents/                  explorador (Haiku, solo lectura) · verificador (Sonnet) · revisor (adversarial)
     ├── hooks/                   al iniciar sesión, inyecta el estado de .cru/ (no hace nada si no existe)
-    ├── referencias/             metodologías por tipo de producto · catálogo de MCPs/plugins
+    ├── scripts/                 session-start.js (hook) · statusline.js (panel)
+    ├── referencias/             metodologías · recetas de verificación por stack · catálogo de MCPs/plugins
     └── plantillas/              PROJECT · TASKS · LOG · DECISIONS
 ```
 
@@ -90,7 +96,17 @@ Al abrir una sesión nueva en el proyecto, Claude ya recibe la fase, la tarea en
 - [x] T-001 Bucle de combate · ✔ 2026-10-15
 ```
 
-Los archivos `.cru/` van en git: son la memoria del proyecto, y así el equipo y las sesiones en la nube la comparten.
+Los archivos `.cru/` van en git: son la memoria del proyecto, y así el equipo y las sesiones en la nube la comparten. La carpeta [.cru/](.cru/) de este repositorio es un ejemplo real.
+
+## Desarrollo
+
+```bash
+npm test
+```
+
+```bash
+npm run validate
+```
 
 ## Licencia
 

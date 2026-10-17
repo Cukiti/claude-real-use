@@ -1,0 +1,11 @@
+{
+  "name": "claude-real-use",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Sistema de trabajo para Claude Code: plugin real-use y guía.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.js\"",
+    "validate": "claude plugin validate . && claude plugin validate ./plugins/real-use"
+  }
+}

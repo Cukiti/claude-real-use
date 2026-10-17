@@ -11,7 +11,7 @@ Qué comprobar: $ARGUMENTS (vacío = la tarea `[~]` de `.cru/TASKS.md` y el diff
 ## 1. Verificación mecánica
 
 - Toma el comando de `Verificación:` en `.cru/PROJECT.md` o el `verif:` de la tarea.
-- Si no existe ninguno, dilo claramente y propone con `AskUserQuestion` cómo crearlo (test unitario, script que compare salida, build headless, captura con el navegador integrado), recomendado primero. Sin verificación no hay "terminado".
+- Si no existe ninguno, dilo claramente y propone con `AskUserQuestion` cómo crearlo, recomendado primero, usando las recetas de `${CLAUDE_PLUGIN_ROOT}/referencias/verificacion.md` para el stack del proyecto. Sin verificación no hay "terminado".
 - Ejecútalo con el subagente `real-use:verificador` cuando la salida pueda ser larga: vuelve solo pasa/falla y los errores relevantes.
 - UI: captura la pantalla del resultado (navegador integrado o la herramienta disponible) y compárala con la referencia; lista diferencias.
 

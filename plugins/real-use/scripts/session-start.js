@@ -7,6 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const MAX_PENDING = 3;
+const MAX_LISTED = 5;
 const MAX_CHARS = 1800;
 
 function readStdin() {
@@ -51,6 +52,20 @@ function parseTasks(text) {
   return out;
 }
 
+// Resumen de una línea de tarea: el título más los campos que importan al retomar.
+// Los criterios completos (hecho:, verif:) siguen en TASKS.md.
+function brief(body, keep = []) {
+  const parts = body.split(" · ");
+  const extra = parts.slice(1).filter((p) => keep.some((k) => p.startsWith(k)));
+  return [parts[0], ...extra].join(" · ");
+}
+
+function list(items, keep, max) {
+  const shown = items.slice(0, max).map((t) => `- ${brief(t, keep)}`);
+  if (items.length > max) shown.push(`- … y ${items.length - max} más`);
+  return shown.join("\n");
+}
+
 function lastLogEntry(text) {
   if (!text) return null;
   const parts = text.split(/^## /m).slice(1);
@@ -85,17 +100,9 @@ function main() {
   lines.push(
     `Tareas: ${tasks.done}/${total} hechas, ${tasks.doing.length} en curso, ${tasks.todo.length} pendientes, ${tasks.blocked.length} bloqueadas.`
   );
-  if (tasks.doing.length) lines.push("En curso:\n" + tasks.doing.map((t) => `- ${t}`).join("\n"));
-  if (tasks.blocked.length) lines.push("Bloqueadas:\n" + tasks.blocked.map((t) => `- ${t}`).join("\n"));
-  if (tasks.todo.length) {
-    lines.push(
-      "Siguientes pendientes:\n" +
-        tasks.todo
-          .slice(0, MAX_PENDING)
-          .map((t) => `- ${t}`)
-          .join("\n")
-    );
-  }
+  if (tasks.doing.length) lines.push("En curso:\n" + list(tasks.doing, ["queda:", "sesión:"], MAX_LISTED));
+  if (tasks.blocked.length) lines.push("Bloqueadas:\n" + list(tasks.blocked, ["bloqueado por:"], MAX_LISTED));
+  if (tasks.todo.length) lines.push("Siguientes pendientes:\n" + list(tasks.todo, [], MAX_PENDING));
   if (log) lines.push("Última entrada de .cru/LOG.md:\n" + log);
   lines.push("El estado completo está en .cru/TASKS.md; /real-use:siguiente continúa el trabajo y /real-use:cerrar cierra la sesión.");
 

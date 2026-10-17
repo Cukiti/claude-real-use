@@ -25,7 +25,7 @@ Ronda 1 (lo esencial):
 1. Tipo de producto y plataforma (si no es obvio).
 2. Metodología: ofrece las 2–3 que encajan según `${CLAUDE_PLUGIN_ROOT}/referencias/metodologias.md` (léelo antes de preguntar).
 3. Qué significa "terminado" para la próxima entrega (hito 1).
-4. Cómo se verifica (comando detectado como recomendado).
+4. Cómo se verifica (comando detectado como recomendado; si no hay ninguno, propón el de `${CLAUDE_PLUGIN_ROOT}/referencias/verificacion.md` para su stack).
 
 Ronda 2 (solo si hace falta): alcance que queda fuera, plataformas de publicación, si trabaja solo o con equipo.
 

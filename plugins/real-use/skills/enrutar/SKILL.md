@@ -24,7 +24,7 @@ Regla base: **Opus 5.5 con effort medium** para el trabajo normal. Sube effort s
 | Correr suites, leer logs largos | — | — | `real-use:verificador` (Sonnet) | solo fallos |
 | Revisión antes de commit/PR | — | — | `real-use:revisor` o `/code-review` | hallazgos con evidencia |
 | Seguridad, dinero, datos de usuarios | Plan + revisión | high / xhigh | revisor + `/security-review` | tests de casos hostiles |
-| Varias tareas independientes | Sesiones paralelas (una por tarea, cortadas por archivos) | medium | worktree por sesión | cada una la suya |
+| Varias tareas independientes | `/real-use:paralelo`: una sesión por tarea, cortadas por archivos | medium | worktree por sesión | cada una la suya |
 | Migración/refactor repetitivo en muchos archivos | `/batch <instrucción>` o fan-out `claude -p` | medium | worktrees | probar en 2–3 archivos primero |
 | Trabajo largo con fin medible | `/goal <condición verificable>` + modo auto | medium | — | la condición del goal |
 | Tarea recurrente (cada X tiempo) | `/loop`, tarea programada o routine | low/medium | — | registro en `.cru/LOG.md` |
