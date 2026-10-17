@@ -14,8 +14,6 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
 
 ## Bloqueado
-- [!] T-012 Publicar en GitHub · hecho: `/plugin marketplace add <usuario>/claude-real-use` instala · verif: instalación desde otra máquina o sesión · bloqueado por: crear el repo remoto (usuario)
-- [!] T-015 CI en GitHub que ejecute `npm test` (workflow ya escrito en .github/workflows/test.yml) · hecho: CI verde en el primer push · verif: estado del check en GitHub · bloqueado por: T-012
 - [!] T-016b Requisito del mod: Claude Code ≥ 2.1.287 · bloqueado por: versión instalada 2.1.283 (`claude update`)
 
 ## Hecho
@@ -31,3 +29,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-011 Mover el repositorio a una carpeta permanente · verif: `npm test` 7/7 y validador en la nueva ruta · ✔ 2026-10-17
 
 - [x] T-010 Probar el plugin cargado en una sesión real · verif: `claude --plugin-dir` + Haiku: hook correcto, 8 skills y 3 agentes visibles (ahorro/panel ocultos al modelo por diseño), /real-use:pendientes ejecutado en fork con explorador · ✔ 2026-10-17
+
+- [x] T-012 Publicar en GitHub (privado): https://github.com/Cukiti/claude-real-use · verif: push de main a origin · ✔ 2026-10-17
+
+- [x] T-015 CI en GitHub con `npm test` · verif: run 39080336016, ubuntu-latest y windows-latest en verde · ✔ 2026-10-17

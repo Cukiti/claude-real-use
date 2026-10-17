@@ -17,3 +17,9 @@
 - Queda: T-012 (crear el repo en GitHub y hacer push); después T-015 (CI en verde) y T-013 (probar en un proyecto real).
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-012 — ya creé el repo vacío en GitHub: <url>"
+
+## 2026-10-17 · Publicado en GitHub (T-012, T-015)
+- Hecho: T-012, repo privado https://github.com/Cukiti/claude-real-use con push de main. T-015, el primer run de CI (39080336016) salió verde en Ubuntu y Windows.
+- Queda: T-013 (usar /real-use:iniciar en un proyecto real, p. ej. Colmadon, y ajustar las skills); T-014 (evals de activación); T-016 (mod) cuando Claude Code ≥ 2.1.287.
+- Decisiones: el repo es privado (elección del usuario).
+- Prompt para retomar: "/real-use:siguiente T-013"
