@@ -125,6 +125,37 @@ Anthropic ha sacado muchas piezas. Esta es la versión corta, según la document
 
 `/real-use:bot` crea un `REVIEW.md` corto con lo que significa "roto" en tu tipo de app y los criterios de su lente, y lo enlaza desde `CLAUDE.md`. Así lo leen la GitHub Action oficial, `/code-review` y el revisor local. Corre en cada push a un PR, o antes de cada commit si trabajas sin GitHub. Y aprende: cuando algo se cuela, `/real-use:cerrar` añade la regla a la sección "Aprendido".
 
+## Siempre sabes dónde estás
+
+El fallo más caro no está en el código, sino en perder el hilo. Por eso el plugin te deja ver el estado en cuatro sitios, de más ligero a más completo:
+
+| Dónde | Qué ves | Coste |
+|---|---|---|
+| Al abrir sesión (hook) | Fase, tarea en curso, lo que espera tu visto bueno y la última entrada de la bitácora | Unas 20 líneas de contexto |
+| Copiloto (avisos) | Contexto alto, caché fría, cambios sin verificar, correcciones seguidas | Cero tokens |
+| `/real-use:menu` | Tablero con botones: continuar, decidir, dar el visto bueno, cerrar | Un turno |
+| `/real-use:mapa` | Página con objetivo, hitos, en curso, por revisar, bloqueado, siguiente, hecho, stack (gratis/pago), decisiones y siguientes pasos | Cero tokens del modelo: lo genera un script |
+
+Y cada tarea termina igual: qué cambió, qué compruebas tú en un minuto, la evidencia, tu visto bueno y 2–3 siguientes pasos. Una tarea con algo que ver queda marcada `revisión: pendiente` hasta que la apruebas.
+
+## Lluvia de ideas: lo hecho y lo que viene
+
+| Idea | Estado |
+|---|---|
+| Estado en archivos (`.cru/`), o adoptando el seguimiento que ya tiene el proyecto | ✔ |
+| Mapa visual del proyecto generado sin modelo, publicado como artifact | ✔ |
+| Entrega como compañero, con visto bueno y siguientes pasos siempre | ✔ |
+| Cuestionarios con casillas y opciones (formulario en la app, preguntas en la terminal) | ✔ |
+| Stack con alternativas gratis y de pago, según tu presupuesto | ✔ |
+| Tablero con botones, copiloto de avisos, effort automático | ✔ |
+| Lentes expertas, equipos de agentes con roles, bot de revisión que aprende | ✔ |
+| Bocetos de pantallas con `/design` antes de programar; presentación con `/slides` al cerrar un hito | ✔ como opción en `spec` y `cerrar` |
+| Mod "panel": banda sobre el prompt con tarea, contexto y revisiones, y teclas 1/2/3 para los siguientes pasos | Próximo (requiere Claude Code ≥ 2.1.287) |
+| Mapa compartido con comentarios: amigos o clientes comentan el artifact y los comentarios llegan a la sesión | Próximo |
+| Resumen semanal automático del progreso (routine) que actualiza el mapa | Próximo |
+| Coste por tarea (tokens de `/usage`) visible en el mapa | Idea |
+| Recorrido de bienvenida interactivo para quien instala el plugin por primera vez | Idea |
+
 ## Errores que queman tokens (y su arreglo)
 
 | Error | Arreglo |
@@ -173,6 +204,7 @@ El plugin `real-use` convierte esta guía en comandos:
 | Comando | Hábito |
 |---|---|
 | `/real-use:menu` | ¿Qué hago ahora? Tablero con botones (app de escritorio) u opciones (terminal), y chuleta de comandos |
+| `/real-use:mapa` | Mapa visual del proyecto (objetivo, hitos, tareas, visto bueno, stack, decisiones), sin coste de modelo |
 | `/real-use:automatizar` | Automatizaciones propuestas que apruebas tú: hooks, tareas programadas, routines, Actions |
 | `/real-use:bot` | Bot de revisión con los criterios del proyecto, que aprende de cada sesión |
 | `/real-use:hacer <lo que sea>` | 2, 3, 5: convierte una petición vaga en una tarea completa y la ejecuta |

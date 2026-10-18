@@ -23,7 +23,7 @@ Descripción que dio el usuario: $ARGUMENTS
 
 ## 2. Entrevistar con opciones (AskUserQuestion)
 
-El usuario prefiere elegir a redactar. Usa `AskUserQuestion` con 2–4 opciones por pregunta, tu recomendación primero y marcada "(Recomendado)". Máximo dos rondas. No preguntes lo que ya dedujiste: confírmalo como opción recomendada.
+El usuario prefiere elegir a redactar. Sigue `${CLAUDE_PLUGIN_ROOT}/referencias/cuestionarios.md` (bancos "Objetivo" y "Producto según el tipo"): en la app de escritorio, un único formulario en un widget; en la terminal, `AskUserQuestion` con 2–4 opciones por pregunta, tu recomendación primero y marcada "(Recomendado)". Máximo dos rondas. No preguntes lo que ya dedujiste: confírmalo como opción recomendada.
 
 Ronda 1 (lo esencial):
 1. Tipo de producto y plataforma (si no es obvio).
@@ -57,7 +57,14 @@ Copia las plantillas de `${CLAUDE_PLUGIN_ROOT}/plantillas/` a `.cru/` y relléna
 - `LOG.md` (en modo adoptar, solo una entrada que enlace la bitácora adoptada): primera entrada con la fecha de hoy.
 - `DECISIONS.md`: registra la metodología elegida como D-001.
 
-Si no hay `CLAUDE.md`, crea uno de menos de 40 líneas con: comandos de build/test/run, convenciones que no se deducen del código, y esta línea: `Estado del proyecto y tareas: .cru/ (sistema Real Use).` Si ya existe, añade solo esa línea.
+Si no hay `CLAUDE.md`, crea uno de menos de 40 líneas con: comandos de build/test/run, convenciones que no se deducen del código y estas líneas:
+```
+Estado del proyecto y tareas: .cru/ (sistema Real Use).
+Al terminar una tarea: di qué cambió y qué debe comprobar el usuario, pide su visto bueno y ofrece 2-3 siguientes pasos como opciones.
+```
+Si ya existe, añade solo esas dos líneas.
+
+Rellena también la sección `## Stack` de `PROJECT.md` con lo que detectaste, marcando cada pieza como `(gratis)`, `(freemium)` o `(pago)`, y el campo `Presupuesto:` con la preferencia del usuario (pregúntala en la ronda 2 si no es obvia).
 
 ## 4. Recomendar herramientas
 

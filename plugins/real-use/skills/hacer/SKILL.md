@@ -39,14 +39,14 @@ Ruta:          <modo · effort · delegación, según /real-use:enrutar>
 
 Effort: compara el recomendado con el actual (`$CLAUDE_EFFORT` en Bash, `$env:CLAUDE_EFFORT` en PowerShell). Si no coinciden, añade una línea a la ficha: `Effort: actual <x> → recomendado <y> (/effort <y>)`. Claude no puede cambiar el effort de la sesión; el usuario sí, y cambiarlo no rompe la caché.
 
-## 3. Preguntar solo lo que falta
+## 3. Mostrar la ficha y preguntar solo lo que falta
 
-Si quedan huecos que cambian el resultado (no detalles que decides tú), haz **una sola** ronda de `AskUserQuestion`, máximo 3 preguntas, cada una con 2–4 opciones y tu recomendación primero. Lo típico: qué significa terminado, qué enfoque de entre 2–3, qué queda fuera.
+**Primero muestra la ficha** (7 líneas, con `?` en los huecos), para que el usuario vea qué entendiste antes de contestar nada. Después, si quedan huecos que cambian el resultado (no detalles que decides tú), haz **una sola** ronda de `AskUserQuestion`, máximo 3 preguntas, cada una con 2–4 opciones y tu recomendación primero. Lo típico: qué significa terminado, qué enfoque de entre 2–3, qué queda fuera.
 
-Muestra la ficha en 7 líneas. Si el usuario no la corrige, sigue: no pidas una confirmación aparte.
+Si el usuario no corrige la ficha, sigue: no pidas una confirmación aparte.
 
 ## 4. Ejecutar y registrar
 
 - Si existe `.cru/`, añade la ficha como tarea en `TASKS.md` (formato del archivo) y márcala `[~]`; al terminar, ciérrala como en `/real-use:siguiente`.
 - Si la lente es distinta de "ninguna", lee su archivo antes de empezar.
-- Termina con la evidencia de la verificación y los apartados **Bloqueado por ti**, **Cambiado** y **Encontrado**.
+- Entrega con el formato de `${CLAUDE_PLUGIN_ROOT}/referencias/entrega.md` (léelo la primera vez): qué hiciste en una frase, qué debe comprobar el usuario en un minuto, la evidencia, el visto bueno y los siguientes pasos como opciones. Si algo de la sesión necesita una decisión del usuario o salió una tarea nueva, inclúyelo en esas opciones.

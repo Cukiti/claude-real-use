@@ -36,7 +36,7 @@ Si la tarea es demasiado grande para una sesión, no la empieces: divídela en `
 ## 4. Cerrar la tarea
 
 - Ejecuta la verificación y muestra la evidencia (salida del comando, captura), no la afirmes.
-- Si pasa: marca `[x]` y añade al final de la línea ` · ✔ <fecha>`.
+- Si pasa: marca `[x]` y añade al final de la línea ` · ✔ <fecha>`; si hay algo que el usuario debe ver (UI, comportamiento, feel), añade también ` · revisión: pendiente`.
 - Si no puedes terminar: deja `[~]` con una nota ` · queda: <siguiente paso exacto>` o pasa a `[!]` con ` · bloqueado por: <qué>`.
-- Termina con tres apartados cortos: **Bloqueado por ti** (decisiones que necesita el usuario), **Cambiado**, **Encontrado** (tareas nuevas añadidas).
+- Entrega con el formato de `${CLAUDE_PLUGIN_ROOT}/referencias/entrega.md` (léelo la primera vez): qué hiciste en una frase, qué debe comprobar el usuario en un minuto, la evidencia, el visto bueno y los siguientes pasos como opciones. Si algo de la sesión necesita una decisión del usuario o salió una tarea nueva, inclúyelo en esas opciones.
 - Ofrece la siguiente tarea o `/real-use:cerrar` si la sesión ya es larga (más de ~3 tareas o contexto pesado).

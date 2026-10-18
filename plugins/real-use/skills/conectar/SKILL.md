@@ -22,7 +22,7 @@ Cada servidor MCP y cada plugin habilitado se paga en contexto en **todas** las 
 
 Lee `${CLAUDE_PLUGIN_ROOT}/referencias/catalogo.md` (la sección del tipo de proyecto y la "Base"). Construye tres listas cortas:
 
-- **Añadir** (máximo 3): lo que más cambia el trabajo diario en este stack. Si existe una CLI equivalente, recomienda la CLI.
+- **Añadir** (máximo 3): lo que más cambia el trabajo diario en este stack, respetando el `Presupuesto:` de `.cru/PROJECT.md` (la tabla "Gratis primero, premium cuando compensa" del catálogo). Si existe una CLI equivalente, recomienda la CLI.
 - **Quitar o mover al proyecto** (las que apliquen): MCPs o plugins de otros dominios (marketing en un juego, Unity en un proyecto de Godot, móvil en una web) o que duplican una CLI.
 - **Ya bien**: una línea.
 

@@ -24,6 +24,7 @@ claude-real-use/
 └── plugins/real-use/            ← el plugin
     ├── skills/
     │   ├── menu/                /real-use:menu       ¿qué hago ahora? tablero con botones + chuleta
+    │   ├── mapa/                /real-use:mapa       mapa visual del proyecto (script, sin coste de modelo)
     │   ├── automatizar/         /real-use:automatizar hooks, tareas programadas, routines, Actions (apruebas tú)
     │   ├── bot/                 /real-use:bot        bot de revisión con REVIEW.md que aprende
     │   ├── hacer/               /real-use:hacer      cualquier petición vaga → tarea completa → hecha
@@ -42,8 +43,8 @@ claude-real-use/
     │   └── panel/               /real-use:panel      status line: tarea en curso + % de contexto
     ├── agents/                  explorador (Haiku) · verificador (Sonnet) · revisor · especialista (con lente)
     ├── hooks/                   inicio: estado de .cru/ · copiloto: avisos de contexto, caché, effort y correcciones
-    ├── scripts/                 session-start.js · copiloto.js · statusline.js
-    ├── referencias/             metodologías · verificación por stack · catálogo · lentes/ (9 lentes expertas)
+    ├── scripts/                 session-start.js · copiloto.js · statusline.js · mapa.js
+    ├── referencias/             metodologías · verificación · catálogo gratis/pago · entrega · cuestionarios · lentes/
     └── plantillas/              PROJECT · TASKS · LOG · DECISIONS
 ```
 

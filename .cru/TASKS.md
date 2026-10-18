@@ -55,3 +55,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-034 Plugin instalado desde Cukiti/claude-real-use (scope user) · verif: Colmadon lista 15 skills real-use · ✔ 2026-10-18
 
 - [x] T-013 Estreno en Colmadón (proyecto real): iniciar funcionó sin tocar archivos a mano; 7 fricciones encontradas y corregidas en v0.6.0 · verif: hook muestra Pendientes y la entrada más reciente de docs/BITACORA.md; evals cerrar 1,00 en modo normal y adoptado · ✔ 2026-10-18
+- [x] T-035 Mapa visual del proyecto (scripts/mapa.js sin modelo + skill mapa, publicado como artifact) · verif: 6 tests + mapas de este repo y Colmadón publicados · ✔ 2026-10-18 · revisión: pendiente
+- [x] T-036 Entrega como compañero con visto bueno (referencias/entrega.md, estado "revisión: pendiente" en hook, menú, mapa y cerrar) y siguientes pasos siempre · verif: tests 45/45 · ✔ 2026-10-18
+- [x] T-037 Cuestionarios (formulario en widget o AskUserQuestion), stack con gratis/freemium/pago y Presupuesto:, /design en spec y /slides en cerrar · ✔ 2026-10-18
+- [ ] T-038 Confirmar el eval hacer-ficha con la ficha antes de las preguntas (la última ejecución se cortó por límite de uso; antes 3/4) · hecho: 4/4 · verif: `npm run evals:resultado -- --case hacer-ficha`

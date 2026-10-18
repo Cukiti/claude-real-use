@@ -22,7 +22,9 @@ Una sesión no termina cuando el usuario se va: termina cuando el estado está e
 - `TASKS.md`: cada tarea tocada queda en un estado honesto. `[x]` solo con verificación pasada: la que ejecutaste tú en esta sesión, o la que el usuario dice que pasó (entonces márcala `[x]` con ` · verif: según el usuario`; su palabra cuenta, pero queda anotada). Toda tarea `[~]` lleva ` · queda: <siguiente paso exacto>`. Todo hallazgo de la sesión entra como `[ ]` nuevo.
 - `DECISIONS.md`: añade las decisiones tomadas que no se deducen del código.
 - Bitácora: en `.cru/LOG.md`, añade una entrada al final. En una bitácora adoptada, ponla donde diga su orden: si es "entrada arriba", justo debajo del título y antes de la entrada más reciente, copiando el formato de sus encabezados. Contenido: Hecho / Queda / Decisiones / Prompt para retomar. El prompt para retomar es una frase que el usuario pueda pegar en una sesión nueva, p. ej. `"/real-use:siguiente T-007 — ya está el test que falla en tests/save_test.gd"`.
-- Si la fase del proyecto cambió (hito cumplido), actualiza `Fase:` en `PROJECT.md`.
+- Si la fase del proyecto cambió (hito cumplido), actualiza `Fase:` en `PROJECT.md` y marca el hito con ` — ✔`. Al cumplir un hito, ofrece (opción) una presentación con `/slides` para enseñarlo a otras personas, si está disponible.
+- Tareas con ` · revisión: pendiente`: recuérdale al usuario cuáles esperan su visto bueno; si lo da ahora, cámbialas a ` · revisado ✔ <fecha>`.
+- Si `PROJECT.md` tiene `- Mapa: <url>`, regenera y republica el mapa (`node "${CLAUDE_PLUGIN_ROOT}/scripts/mapa.js"` y publicar en esa misma url; ver `/real-use:mapa`). Es un script, no cuesta tokens del modelo.
 
 ## 3. Aprender: corregir en la fuente
 

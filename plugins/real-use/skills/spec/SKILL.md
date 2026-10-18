@@ -13,7 +13,7 @@ Con una spec precisa, el resultado depende mucho menos del effort y del modelo: 
 ## 1. Entrevista
 
 - Lee lo mínimo para no preguntar obviedades (`.cru/PROJECT.md`, y los archivos que la idea nombra). Para entender un área grande, usa `real-use:explorador`.
-- Usa `AskUserQuestion`: hasta 4 preguntas por ronda, 2–4 opciones cada una, recomendada primero. Ve a lo difícil: casos límite, estados de error, datos persistidos, rendimiento, UX en pantallas pequeñas, qué pasa si se interrumpe, compatibilidad con lo existente.
+- Pregunta según `${CLAUDE_PLUGIN_ROOT}/referencias/cuestionarios.md` (banco "Feature concreta"): un formulario en un widget si la herramienta existe, o `AskUserQuestion` con hasta 4 preguntas por ronda y 2–4 opciones cada una, la recomendada primero. Ve a lo difícil: casos límite, estados de error, datos persistidos, rendimiento, UX en pantallas pequeñas, qué pasa si se interrumpe, compatibilidad con lo existente.
 - No preguntes por estilo de código ni cosas que decides tú. Para cuando ya no haya decisiones de producto abiertas (normalmente 2–3 rondas).
 
 ## 2. Escribir `.cru/specs/<nombre-kebab>.md`
@@ -25,6 +25,10 @@ Secciones, cortas:
 4. **Archivos e interfaces** que se tocan (rutas reales).
 5. **Verificación end-to-end**: el comando o procedimiento exacto que demuestra que funciona.
 6. **Tareas**: 3–10 tareas en el formato de `TASKS.md`, cada una con `hecho:` y `verif:`.
+
+## 2b. Si la feature tiene pantallas
+
+Antes de programar la UI, ofrece (opción, no obligación) bocetarlas con `/design <pantallas de la spec>` si está disponible: un lienzo con artboards que el usuario revisa y edita en el navegador. Es más barato corregir un boceto que una interfaz programada. Enlaza el diseño en la spec.
 
 ## 3. Integrar
 

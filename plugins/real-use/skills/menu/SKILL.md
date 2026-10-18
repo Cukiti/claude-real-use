@@ -24,6 +24,7 @@ Prioriza en este orden y quédate con las que apliquen:
 | Situación | Acción que ofrecer |
 |---|---|
 | No hay `.cru/` | `/real-use:iniciar`: organizar el proyecto |
+| Tareas con ` · revisión: pendiente` | Dar el visto bueno (una opción o botón por tarea: **Visto bueno** / **Algo falla**) |
 | Cambios sin commit de una tarea terminada | Verificar y hacer commit (`/real-use:verificar`) |
 | Hay una tarea `[~]` | Retomarla (`/real-use:siguiente <ID>`) |
 | Sesión larga o con varias tareas hechas | `/real-use:cerrar` y después `/clear` |
@@ -42,6 +43,8 @@ Prioriza en este orden y quédate con las que apliquen:
 2. En curso: la tarea `[~]` con su `queda:` y el botón **Continuar** → `/real-use:siguiente <ID>`.
 3. Bloqueadas: cada `[!]` con el botón **Decidir** → `Ayúdame a desbloquear <ID>: <motivo>`.
 4. Siguientes: las 3 primeras `[ ]` con el botón **Empezar** → `/real-use:siguiente <ID>`.
+4b. Si hay tareas con ` · revisión: pendiente`, arriba de todo: "Esperando tu visto bueno", con **Visto bueno** → `Visto bueno a <ID>` y **Algo falla** → `<ID> no está bien:` .
+4c. Botón **Mapa** → `/real-use:mapa`.
 5. Las acciones elegidas en el paso 2 como fila de botones, cada una con su coste (bajo/medio/alto), más **Chuleta**.
 
 Cada botón llama a `sendPrompt("<comando>")` (o al mecanismo equivalente que documente la herramienta): el usuario ve en el chat cada comando que se envía. No repitas en texto lo que muestra el tablero.
@@ -69,5 +72,6 @@ Para compartirlo o seguirlo desde el navegador, ofrece publicarlo como artifact.
 | Elegir MCPs y herramientas | `/real-use:conectar` |
 | Automatizar algo (con tu aprobación) | `/real-use:automatizar` |
 | Un bot que revise cada PR | `/real-use:bot` |
+| Ver el mapa del proyecto | `/real-use:mapa` |
 | Pregunta rápida sin ensuciar el contexto | `/btw <pregunta>` |
 | Cambiar cuánto piensa Claude | `/effort low/medium/high` |

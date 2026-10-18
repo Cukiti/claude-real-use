@@ -64,6 +64,23 @@ Antes de recomendar, descarta lo ya conectado (`claude mcp list`, `.mcp.json`). 
 | `.cru/` de este plugin | Estado del proyecto en archivos, gratis y versionado con git |
 | Linear / Notion / Asana / Jira (MCP) | Solo si el equipo ya vive ahí; si trabajas solo, `.cru/TASKS.md` basta |
 
+## Gratis primero, premium cuando compensa
+
+Recomienda según el `Presupuesto:` de `.cru/PROJECT.md`. Si es "solo gratis", ofrece únicamente la columna gratuita. Si es "gratis primero", menciona la opción de pago solo cuando su ventaja cambie algo concreto del proyecto. Los planes y límites cambian: verifica las condiciones actuales en la web oficial antes de recomendar una capa concreta.
+
+| Necesidad | Gratis o con capa gratuita | De pago / premium, cuándo compensa |
+|---|---|---|
+| Motor de juego | Godot (libre); Unity Personal y Unreal (con condiciones de ingresos) | Unity Pro o un plan de Unreal: cuando lo exigen la licencia o los ingresos |
+| Base de datos y backend | SQLite (local); capas gratuitas de Supabase y Firebase | Plan de pago de Supabase o Firebase: más uso, copias de seguridad y sin pausas por inactividad |
+| Servidor de juego online | Nakama o Colyseus autoalojados, en un VPS barato o en una capa gratuita | Servicios gestionados (Photon, Heroic Cloud): cuando no quieres operar servidores |
+| Hosting web | GitHub Pages, capas gratuitas de Vercel, Netlify y Cloudflare Pages | Planes de pago: dominios del equipo, más tráfico o funciones de servidor |
+| Errores en producción | Capa gratuita de Sentry; logs propios | Sentry de pago: más eventos, más retención y equipo |
+| Diseño | Penpot (libre), capa gratuita de Figma, `/design` de Claude | Figma de pago: equipo y Dev Mode |
+| Arte 2D | LibreSprite, Krita | Aseprite (pago único, barato) |
+| 3D | Blender (libre) | Herramientas de pago solo para flujos concretos |
+| CI | GitHub Actions (minutos gratuitos) | Minutos extra cuando el uso los supera |
+| Revisión de código con IA | `/code-review` local, la GitHub Action con tu suscripción | Code Review gestionado (Team/Enterprise) |
+
 ## Cuándo crear tu propia herramienta
 
 - **Skill**: conocimiento o flujo que repites (convenciones de tu motor, checklist de release). Se carga solo cuando hace falta.

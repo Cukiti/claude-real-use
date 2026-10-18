@@ -1,7 +1,7 @@
 {
   "name": "real-use",
   "displayName": "Real Use",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Memoria del proyecto en archivos (.cru/), enrutamiento de tareas, lentes expertas, avisos de coste en el momento justo y cierre de sesión sin pendientes.",
   "author": { "name": "Anderson Kayle" },
   "license": "MIT",

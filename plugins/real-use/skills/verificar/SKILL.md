@@ -29,4 +29,4 @@ Para revisiones de seguridad o de bugs a fondo existen también `/code-review` y
 
 ## 3. Resultado
 
-Muestra la evidencia (comando + salida resumida). Solo si todo pasa, la tarea puede marcarse `[x]`.
+Muestra la evidencia (comando + salida resumida). Solo si todo pasa, la tarea puede marcarse `[x]`. Si termina una tarea, entrega con el formato de `${CLAUDE_PLUGIN_ROOT}/referencias/entrega.md` (léelo la primera vez): qué hiciste en una frase, qué debe comprobar el usuario en un minuto, la evidencia, el visto bueno y los siguientes pasos como opciones. Si algo de la sesión necesita una decisión del usuario o salió una tarea nueva, inclúyelo en esas opciones.

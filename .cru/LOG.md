@@ -77,3 +77,9 @@
 - Queda: T-030 (bot en un PR real), T-016 (mod, requiere `claude update`). En Colmadón: 5 worktrees sobrantes en .claude/worktrees (ofrecer /real-use:pendientes allí).
 - Decisiones: D-009.
 - Prompt para retomar: "/real-use:siguiente T-030"
+
+## 2026-10-18 · v0.7.0: mapa, visto bueno y cuestionarios
+- Hecho: T-035 a T-037. Mapa publicado: este repo (https://claude.ai/artifact/PdDsWLvSVjj7eojogUcYBq) y Colmadón (https://claude.ai/artifact/Dp5ri3cVBSCjzqy2fRpoXn). Evals de resultado: cerrar +0,50, experto +0,13, cerrar adoptado 1,00.
+- Queda: T-038 (repetir el eval de hacer, que se cortó); T-030 y T-016.
+- Aprendido: esta sesión consumió el límite rápido por una conversación muy larga y muchas baterías de evals (cada una lanza 40–60 sesiones). Las próximas mejoras van en sesiones nuevas y cortas, y los evals solo para el caso que cambia (`--case`).
+- Prompt para retomar: "/real-use:siguiente T-038"

@@ -38,13 +38,14 @@ function field(text, name) {
 }
 
 function parseTasks(text) {
-  const out = { doing: [], todo: [], blocked: [], done: 0 };
+  const out = { doing: [], todo: [], blocked: [], done: 0, review: [] };
   if (!text) return out;
   for (const line of text.split(/\r?\n/)) {
     const m = line.match(/^\s*[-*]\s*\[(.)\]\s*(.+)$/);
     if (!m) continue;
     const mark = m[1].toLowerCase();
     const body = m[2].trim();
+    if (/revisi[oó]n:\s*pendiente/i.test(body)) out.review.push(body);
     if (mark === "~") out.doing.push(body);
     else if (mark === "!") out.blocked.push(body);
     else if (mark === "x") out.done++;
@@ -156,6 +157,7 @@ function main() {
     lines.push(
       `Tareas${tasksRef ? ` (${tasksWhere})` : ""}: ${tasks.done}/${total} hechas, ${tasks.doing.length} en curso, ${tasks.todo.length} pendientes, ${tasks.blocked.length} bloqueadas.`
     );
+    if (tasks.review.length) lines.push("Esperando el visto bueno del usuario (menciónalo al empezar):\n" + list(tasks.review, [], MAX_LISTED));
     if (tasks.doing.length) lines.push("En curso:\n" + list(tasks.doing, ["queda:", "sesión:"], MAX_LISTED));
     if (tasks.blocked.length) lines.push("Bloqueadas:\n" + list(tasks.blocked, ["bloqueado por:"], MAX_LISTED));
     if (tasks.todo.length) lines.push("Siguientes pendientes:\n" + list(tasks.todo, [], MAX_PENDING));
