@@ -10,7 +10,6 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 
 ## Pendiente
 - [ ] T-013 Probar /real-use:iniciar en un proyecto real (p. ej. Colmadon) y ajustar las skills con lo aprendido · hecho: .cru/ creado sin correcciones manuales y una tarea cerrada con siguiente+cerrar · verif: LOG.md del proyecto con la sesión
-- [ ] T-014 Evals de activación de skills con `claude plugin eval` · hecho: cada skill se activa con 3 frases típicas y no con 3 ajenas · verif: `claude plugin eval ./plugins/real-use`
 - [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
 
 ## Bloqueado
@@ -37,3 +36,5 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-018 Skill hacer: petición vaga → ficha de tarea → ruta → ejecución · verif: validate + test de estructura · ✔ 2026-10-17
 - [x] T-019 Paso "Aprender: corregir en la fuente" en /real-use:cerrar · ✔ 2026-10-17
 - [x] T-020 Tests de estructura (rutas, lentes, frontmatter) y arreglo de los 4 fallos de QA en statusline/session-start · verif: `npm test` 17/17 · ✔ 2026-10-17
+
+- [x] T-014 Evals de activación (16 casos: 13 positivos con competidoras excluidas + 3 negativos) · verif: `npm run evals` 48/48 ejecuciones ($3,47); prueba de mutación de hacer → 0/3 · ✔ 2026-10-17

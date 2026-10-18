@@ -111,6 +111,16 @@ npm test
 npm run validate
 ```
 
+Evals de activación: 16 casos que comprueban que cada frase activa la skill correcta y no la competidora (`hacer` frente a `experto` o `spec`), y que las preguntas normales no activan ninguna. Los casos se definen en [scripts/generar-evals.js](scripts/generar-evals.js). Cuestan unos $3,50 con 3 ejecuciones por caso, así que no corren en CI: lánzalos cuando cambies la descripción de una skill.
+
+```bash
+npm run evals:generar
+```
+
+```bash
+npm run evals
+```
+
 ## Licencia
 
 MIT

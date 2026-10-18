@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test \"tests/**/*.test.js\"",
-    "validate": "claude plugin validate . && claude plugin validate ./plugins/real-use"
+    "validate": "claude plugin validate . && claude plugin validate ./plugins/real-use",
+    "evals:generar": "node scripts/generar-evals.js",
+    "evals": "cd plugins/real-use && claude plugin eval . --ablation none --runs 3 -j 4"
   }
 }

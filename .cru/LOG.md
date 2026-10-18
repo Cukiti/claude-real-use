@@ -29,3 +29,9 @@
 - Queda: T-013 (probar en un proyecto real); T-014 (evals de activación, ahora con hacer y experto, que compiten por las peticiones vagas).
 - Decisiones: D-005.
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-17 · Evals de activación (T-014)
+- Hecho: T-014. 16 casos en plugins/real-use/evals (generados por scripts/generar-evals.js). Con 3 ejecuciones por caso, 48/48 correctas, sin activaciones cruzadas entre hacer, experto y spec; los negativos no activan nada. Prueba de mutación: con la descripción de hacer rota, sus 3 casos caen a 0 %.
+- Queda: T-013 (probar en un proyecto real). Al cambiar la descripción de una skill: `npm run evals`.
+- Decisiones: los evals no van en CI por coste (~$3,50 por ejecución completa).
+- Prompt para retomar: "/real-use:siguiente T-013"

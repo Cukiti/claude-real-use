@@ -49,6 +49,19 @@ test("cada lente tiene las secciones que usan /experto y el revisor", () => {
   }
 });
 
+test("los evals solo esperan skills que existen y que el modelo puede invocar", () => {
+  const evals = path.join(ROOT, "evals");
+  for (const caso of fs.readdirSync(evals).filter((d) => d !== "results")) {
+    for (const g of fs.readdirSync(path.join(evals, caso, "graders"))) {
+      const text = fs.readFileSync(path.join(evals, caso, "graders", g), "utf8");
+      const m = text.match(/\?(\w[\w-]*)"'$/m);
+      if (!m) continue;
+      const skill = fs.readFileSync(path.join(ROOT, "skills", m[1], "SKILL.md"), "utf8");
+      assert.doesNotMatch(skill, /^disable-model-invocation: true$/m, `${caso}: ${m[1]} no es invocable por el modelo`);
+    }
+  }
+});
+
 test("cada skill tiene name igual a su carpeta y description", () => {
   for (const dir of fs.readdirSync(path.join(ROOT, "skills"))) {
     const text = fs.readFileSync(path.join(ROOT, "skills", dir, "SKILL.md"), "utf8");
