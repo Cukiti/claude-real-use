@@ -220,10 +220,3 @@ npm run evals
 ## 📜 Licencia
 
 [MIT](LICENSE) · Copyright (c) 2026 Anderson Carrasco.
-
-## 🎬 Cómo grabar la demo
-
-1. Instala [VHS, herramienta gratuita para grabar GIFs de terminal](https://github.com/charmbracelet/vhs#installation), con `ttyd` y `ffmpeg` disponibles en el PATH.
-2. Desde la raíz del repositorio, ejecuta `vhs record > assets/demo.tape`. Entra en Claude Code con el plugin y muestra el ciclo iniciar → siguiente → verificar → cerrar en un proyecto de ejemplo. Sal de Claude Code y después del shell de grabación con `exit`.
-3. Revisa `assets/demo.tape`: establece `Output assets/demo.gif`, ajusta las pausas y elimina datos privados. Genera el GIF con `vhs assets/demo.tape` y comprueba que los comandos y sus resultados se lean bien.
-4. Sustituye el comentario `<!-- demo.gif -->` y el aviso de demo pendiente por una imagen Markdown con texto alternativo y ruta `assets/demo.gif`.
