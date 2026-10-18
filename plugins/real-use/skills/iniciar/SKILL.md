@@ -14,6 +14,9 @@ Descripción que dio el usuario: $ARGUMENTS
 
 - Si ya existe `.cru/`, no lo sobrescribas: di que el proyecto ya está iniciado y ofrece `/real-use:siguiente` o `/real-use:pendientes`.
 - Mira solo marcadores de nivel superior (no explores todo el repo): `project.godot`, `*.uproject`, `ProjectSettings/` (Unity), `build.gradle*`/`settings.gradle*`, `*.xcodeproj`, `pubspec.yaml`, `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `CLAUDE.md`, `README*`, `.git`.
+- **Seguimiento que ya existe**: busca en el primer nivel archivos de estado o pendientes (`ESTADO*`, `STATUS*`, `TODO*`, `Pendientes*`, `TASKS*`, `PLAN*`, `ROADMAP*`, `CHANGELOG*`, `AGENTS.md`, carpetas de otras herramientas como `.trabajo-*`). Mide su tamaño con `wc -l` y lee solo sus encabezados (`grep "^#"`). Si los hay, el proyecto ya tiene un método: no lo dupliques (ver paso 2b).
+- **Scripts de prueba**: `.bat`, `.sh` o `.ps1` con nombres como test, autotest, verificar o pruebas suelen ser la verificación real. Léelos (son cortos) antes de proponer otra.
+- **Restos que cuestan**: `git worktree list` y `.claude/worktrees/`. Si hay worktrees viejos, menciónalo al final y ofrece `/real-use:pendientes`.
 - Deduce tipo, stack y el comando de verificación probable (scripts de `package.json`, `gradlew test`, `godot --headless`, `pytest`, etc.).
 - Si hay mucho código existente y necesitas entenderlo, delega en el subagente `real-use:explorador` y pide un resumen de 15 líneas como máximo.
 
@@ -28,6 +31,17 @@ Ronda 1 (lo esencial):
 4. Cómo se verifica (comando detectado como recomendado; si no hay ninguno, propón el de `${CLAUDE_PLUGIN_ROOT}/referencias/verificacion.md` para su stack).
 
 Ronda 2 (solo si hace falta): alcance que queda fuera, plataformas de publicación, si trabaja solo o con equipo.
+
+## 2b. Si ya hay seguimiento propio
+
+Pregunta con `AskUserQuestion` qué hacer, la recomendada primero:
+1. **Migrar a `.cru/` (recomendado si los archivos son largos)**: convierte cada pendiente abierto en una tarea de `TASKS.md` con ID, `hecho:` y `verif:` (agrupa los repetidos y deja fuera lo ya resuelto). Lleva la última entrada de estado a `LOG.md`. Los originales quedan como histórico, sin borrarlos, y `.cru/` pasa a ser la fuente de verdad. Ventaja: el inicio de cada sesión carga un resumen de unas 20 líneas en vez de cientos.
+2. **Adoptar sin migrar**: no crees `TASKS.md`. Escribe en `PROJECT.md` qué archivo hace de tareas y cuál de bitácora, y el resto de skills los usarán. Útil si otra herramienta o persona también los edita.
+3. **Solo organizar lo nuevo**: `.cru/` para el trabajo a partir de hoy; lo anterior se queda donde está.
+
+Para migrar no leas los archivos enteros en esta conversación: delega la extracción en el subagente `real-use:explorador` ("lista los pendientes abiertos de <archivo> como líneas `- [ ] título · hecho: … · verif: …`, máximo 40, agrupando repetidos") y revisa su resultado.
+
+Si existe `AGENTS.md` y no hay `CLAUDE.md`, el nuevo `CLAUDE.md` debe importarlo con `@AGENTS.md` en vez de copiar su contenido.
 
 ## 3. Crear los archivos
 

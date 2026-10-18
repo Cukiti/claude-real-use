@@ -52,3 +52,5 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub
 - [x] T-031 Evals de resultado con línea base (4 casos) · verif: hacer Δ +1,00 · cerrar Δ +0,50 (tras arreglarlo) · siguiente y experto Δ 0 · ✔ 2026-10-18
 - [x] T-032 cerrar acepta la verificación que reporta el usuario (anotada "según el usuario"), hallado por los evals de resultado · verif: cerrar 1,00 frente a 0,50 · ✔ 2026-10-18
+- [x] T-033 iniciar adopta el seguimiento existente (migrar / adoptar / solo lo nuevo), detecta scripts de prueba y worktrees sobrantes; hallado al preparar Colmadon · verif: tests + validate · ✔ 2026-10-18
+- [x] T-034 Plugin instalado desde Cukiti/claude-real-use (scope user) · verif: Colmadon lista 15 skills real-use · ✔ 2026-10-18
