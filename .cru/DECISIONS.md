@@ -24,3 +24,9 @@
 - Opciones: un subagente por especialidad; una skill por especialidad; una skill con lentes en archivos.
 - Elegida: una sola skill (`experto`) con lentes en `referencias/lentes/`. Solo una descripción entra en el listado de cada sesión y cada lente se lee bajo demanda, así que añadir lentes no cuesta tokens fijos.
 - Consecuencias: cada lente debe tener las secciones que comprueba `tests/estructura.test.js`.
+
+## D-006 · 2026-10-17 · Avisos al usuario por systemMessage, sin contexto ni modelo
+- Contexto: el usuario sufre por los tokens y no sabe cuándo hacer /clear, qué effort usar o cuándo una corrección más ya no compensa.
+- Opciones: inyectar consejos a Claude (additionalContext), un hook con modelo (prompt hook), heurísticas deterministas con systemMessage.
+- Elegida: heurísticas en node que solo emiten systemMessage (lo ve el usuario y no entra en el contexto) y salen una vez por sesión o por umbral. Coste: cero tokens.
+- Consecuencias: el uso de contexto se lee de la cola del transcript (el campo usage del último mensaje), que es un formato interno; si cambia, el aviso de contexto deja de salir pero no rompe nada.

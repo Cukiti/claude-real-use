@@ -1,9 +1,18 @@
 {
   "name": "real-use",
   "displayName": "Real Use",
-  "version": "0.3.0",
-  "description": "Memoria del proyecto en archivos (.cru/), enrutamiento de tareas, verificación obligatoria y cierre de sesión sin pendientes.",
+  "version": "0.4.0",
+  "description": "Memoria del proyecto en archivos (.cru/), enrutamiento de tareas, lentes expertas, avisos de coste en el momento justo y cierre de sesión sin pendientes.",
   "author": { "name": "Anderson Kayle" },
   "license": "MIT",
-  "keywords": ["workflow", "productividad", "tokens", "metodologia", "agentes"]
+  "keywords": ["workflow", "productividad", "tokens", "metodologia", "agentes"],
+  "userConfig": {
+    "avisos": {
+      "type": "string",
+      "title": "Avisos del copiloto",
+      "description": "todos: contexto, caché, correcciones, effort y peticiones vagas · coste: solo contexto y caché · ninguno: desactivados",
+      "options": ["todos", "coste", "ninguno"],
+      "default": "todos"
+    }
+  }
 }

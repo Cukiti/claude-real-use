@@ -37,6 +37,8 @@ Parar si:      <cuándo preguntar en vez de seguir>
 Ruta:          <modo · effort · delegación, según /real-use:enrutar>
 ```
 
+Effort: compara el recomendado con el actual (`$CLAUDE_EFFORT` en Bash, `$env:CLAUDE_EFFORT` en PowerShell). Si no coinciden, añade una línea a la ficha: `Effort: actual <x> → recomendado <y> (/effort <y>)`. Claude no puede cambiar el effort de la sesión; el usuario sí, y cambiarlo no rompe la caché.
+
 ## 3. Preguntar solo lo que falta
 
 Si quedan huecos que cambian el resultado (no detalles que decides tú), haz **una sola** ronda de `AskUserQuestion`, máximo 3 preguntas, cada una con 2–4 opciones y tu recomendación primero. Lo típico: qué significa terminado, qué enfoque de entre 2–3, qué queda fuera.

@@ -76,11 +76,36 @@ function lastLogEntry(text) {
   return last.split(/\r?\n/).slice(0, 6).join("\n");
 }
 
+// Aviso al usuario (no entra en el contexto) al reanudar una sesión grande con la caché caducada.
+// Los campos los da Claude Code en SessionStart con source "resume" o "fork".
+function resumeWarning(input) {
+  const nivel = (process.env.CLAUDE_PLUGIN_OPTION_AVISOS || "todos").toLowerCase();
+  if (nivel === "ninguno") return null;
+  const tokens = Number(input.context_tokens) || 0;
+  if (!input.prompt_cache_likely_expired || tokens < 50000) return null;
+  const usd = Number(input.estimated_cache_write_usd);
+  const coste = Number.isFinite(usd) && usd > 0 ? ` (~$${usd.toFixed(2)} en precio de API)` : "";
+  return (
+    `⏱ Retomas una sesión de ~${Math.round(tokens / 1000)}k tokens con la caché caducada: ` +
+    `el primer mensaje la reprocesa entera${coste}. ` +
+    "Si el estado está en .cru/, una sesión nueva con /real-use:siguiente arranca casi desde cero."
+  );
+}
+
+function emit(context, warning) {
+  if (!context && !warning) return;
+  const out = {};
+  if (context) out.hookSpecificOutput = { hookEventName: "SessionStart", additionalContext: context };
+  if (warning) out.systemMessage = warning;
+  process.stdout.write(JSON.stringify(out));
+}
+
 function main() {
   const input = readStdin();
+  const warning = resumeWarning(input);
   const root = process.env.CLAUDE_PROJECT_DIR || input.cwd || process.cwd();
   const dir = path.join(root, ".cru");
-  if (!fs.existsSync(dir)) return;
+  if (!fs.existsSync(dir)) return emit(null, warning);
 
   const project = read(path.join(dir, "PROJECT.md"));
   const tasks = parseTasks(read(path.join(dir, "TASKS.md")));
@@ -110,11 +135,7 @@ function main() {
   let text = lines.join("\n");
   if (text.length > MAX_CHARS) text = text.slice(0, MAX_CHARS) + "\n…(recortado; ver .cru/)";
 
-  process.stdout.write(
-    JSON.stringify({
-      hookSpecificOutput: { hookEventName: "SessionStart", additionalContext: text },
-    })
-  );
+  emit(text, warning);
 }
 
 try {

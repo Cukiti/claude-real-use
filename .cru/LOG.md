@@ -35,3 +35,9 @@
 - Queda: T-013 (probar en un proyecto real). Al cambiar la descripción de una skill: `npm run evals`.
 - Decisiones: los evals no van en CI por coste (~$3,50 por ejecución completa).
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-17 · v0.4: interactividad sin coste de tokens
+- Hecho: T-021 a T-023. Copiloto de avisos, aviso al reanudar, menu, equipo + especialista, conectar y effort automático. `npm test` 29/29; evals 57/57; aviso visto en una sesión real.
+- Queda: T-013 (probar en un proyecto real).
+- Decisiones: D-006.
+- Prompt para retomar: "/real-use:siguiente T-013"

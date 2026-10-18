@@ -1,6 +1,7 @@
 ---
 name: cerrar
 description: Cierra la sesión sin cabos sueltos. Actualiza .cru/TASKS.md y .cru/LOG.md, lista lo que queda abierto (cambios sin commit, tareas a medias, sesiones/ramas), propone commit, convierte las correcciones repetidas en reglas duraderas (CLAUDE.md, hook, lente o skill) y deja un prompt exacto para retomar. Usar cuando el usuario diga "terminamos", "cierra", "por hoy", o antes de /clear.
+effort: low
 ---
 
 # Cerrar la sesión

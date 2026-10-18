@@ -29,6 +29,20 @@ test("toda ruta ${CLAUDE_PLUGIN_ROOT}/… citada existe", () => {
   assert.deepEqual(missing, []);
 });
 
+test("hooks.json solo apunta a scripts que existen", () => {
+  const hooks = fs.readFileSync(path.join(ROOT, "hooks", "hooks.json"), "utf8");
+  const scripts = [...hooks.matchAll(/\$\{CLAUDE_PLUGIN_ROOT\}\/([\w./-]+)/g)].map((m) => m[1]);
+  assert.ok(scripts.length >= 2);
+  for (const s of scripts) assert.ok(fs.existsSync(path.join(ROOT, s)), s);
+});
+
+test("los agentes que cita /equipo existen", () => {
+  const skill = fs.readFileSync(path.join(ROOT, "skills", "equipo", "SKILL.md"), "utf8");
+  const agentes = [...skill.matchAll(/`real-use:([\w-]+)`/g)].map((m) => m[1]);
+  assert.ok(agentes.length >= 4);
+  for (const a of agentes) assert.ok(fs.existsSync(path.join(ROOT, "agents", `${a}.md`)), a);
+});
+
 test("cada lente de la tabla de /experto tiene su archivo y viceversa", () => {
   const skill = fs.readFileSync(path.join(ROOT, "skills", "experto", "SKILL.md"), "utf8");
   const listed = [...skill.matchAll(/^\| `([\w-]+)` \|/gm)].map((m) => m[1]).sort();

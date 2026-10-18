@@ -1,6 +1,7 @@
 ---
 name: enrutar
 description: Tabla de decisión para ejecutar una tarea al menor coste que la resuelva bien - qué modelo, effort, modo (directo/plan/spec/goal), si delegar en subagente, sesión paralela, worktree o nube. Usar al decidir cómo abordar una tarea, cuando el usuario pregunte "¿cómo hago esto?" o "¿qué agente uso?".
+effort: low
 argument-hint: "[descripción de la tarea]"
 ---
 
@@ -32,6 +33,15 @@ Regla base: **Opus 5.5 con effort medium** para el trabajo normal. Sube effort s
 | Larga, autónoma, no necesita tu máquina | Sesión en la nube | medium/high | — | rama + PR |
 | Atascado tras 2 correcciones fallidas | `/clear` y prompt nuevo con lo aprendido | igual | — | — |
 | Opus en xhigh falla 2 veces en lo mismo | Fable 5.1 solo para ese problema, luego volver | high | — | — |
+
+## Effort automático
+
+No hace falta que el usuario lo cambie en cada paso: varias piezas de este plugin fijan su propio effort mientras se ejecutan.
+- `/real-use:verificar` corre en **high**: verificar es donde más rinde pensar.
+- `/real-use:cerrar`, `/real-use:enrutar`, `/real-use:menu` y `/real-use:conectar` corren en **low**: son tareas de registro y de decisión.
+- Los subagentes tienen el suyo: explorador (Haiku, low), verificador (Sonnet, low), especialista (medium), revisor (high).
+
+Para el resto, recomienda al usuario el comando `/effort <nivel>` solo cuando el actual (`$CLAUDE_EFFORT`) no encaje con la tarea.
 
 ## Reglas de delegación
 

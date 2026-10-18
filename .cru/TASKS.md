@@ -38,3 +38,6 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-020 Tests de estructura (rutas, lentes, frontmatter) y arreglo de los 4 fallos de QA en statusline/session-start · verif: `npm test` 17/17 · ✔ 2026-10-17
 
 - [x] T-014 Evals de activación (16 casos: 13 positivos con competidoras excluidas + 3 negativos) · verif: `npm run evals` 48/48 ejecuciones ($3,47); prueba de mutación de hacer → 0/3 · ✔ 2026-10-17
+- [x] T-021 Copiloto (hook UserPromptSubmit): avisos de contexto, caché fría, correcciones seguidas, effort y peticiones vagas, solo al usuario (systemMessage) · verif: 9 tests + sesión real muestra "UserPromptSubmit says: 💡…" · ✔ 2026-10-17
+- [x] T-022 Aviso al reanudar una sesión grande con la caché caducada (session-start, con coste estimado) y opción avisos todos/coste/ninguno en /config · verif: tests · ✔ 2026-10-17
+- [x] T-023 Skills menu, equipo y conectar; agente especialista con lente; effort automático (verificar high; cerrar, enrutar, menu y conectar low) · verif: evals 57/57 ($4,43) · ✔ 2026-10-17

@@ -65,6 +65,35 @@ En la práctica:
 
 `/real-use:experto` hace esto con 9 lentes listas (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento). Solo carga la lente que hace falta, así que tener muchas no cuesta tokens.
 
+### ¿Se pueden dar roles a distintos agentes?
+
+Sí, y además cada agente tiene su propio modelo, effort, herramientas y contexto. `/real-use:equipo <tarea>` propone un reparto y te deja elegir entre una versión mínima y otra completa, con su coste. Por ejemplo, para una pantalla de tienda de un juego:
+
+| Rol | Agente | Modelo · effort |
+|---|---|---|
+| Investigador | explorador | Haiku · low |
+| Especialista game-design | especialista + lente | el tuyo · medium |
+| Revisor diseno-ui + qa | revisor + lentes | el tuyo · high |
+| Verificador | verificador | Sonnet · low |
+
+Regla clave: quien crea no revisa su propio trabajo. Y un equipo cuesta más que una sesión sola, así que úsalo solo cuando la tarea cruza especialidades.
+
+## Avisos en el momento justo (copiloto)
+
+El plugin trae un hook que mira cada mensaje antes de que llegue a Claude. Cuando ve algo, te avisa a ti (los avisos no entran en el contexto de Claude, así que no cuestan tokens). Cada aviso sale una sola vez:
+
+| Aviso | Cuándo |
+|---|---|
+| 🟡 / 🔴 Contexto | La conversación supera ~80k o ~150k tokens: cada turno reenvía todo |
+| ⏱ Caché fría | Escribes tras más de una hora en una conversación grande, o retomas una sesión grande con la caché caducada (con el coste estimado) |
+| 🔁 Correcciones | Corriges dos veces seguidas: mejor `/clear` y un prompt nuevo |
+| ⚙ Effort | Effort `max` para un cambio pequeño, o `low` para algo delicado |
+| 💡 Petición vaga | "arregla el menú" sin detalles: `/real-use:hacer` la completa |
+
+Se configura en `/config` → Real Use → Avisos: `todos`, `coste` (solo contexto y caché) o `ninguno`.
+
+Además, el effort se ajusta solo en las piezas del plugin: `verificar` piensa en high; `cerrar`, `menu` y `conectar` en low; cada subagente lleva el suyo.
+
 ## Errores que queman tokens (y su arreglo)
 
 | Error | Arreglo |
@@ -112,7 +141,10 @@ El plugin `real-use` convierte esta guía en comandos:
 
 | Comando | Hábito |
 |---|---|
+| `/real-use:menu` | ¿Qué hago ahora? Las 3–4 mejores acciones para elegir, y la chuleta de comandos |
 | `/real-use:hacer <lo que sea>` | 2, 3, 5: convierte una petición vaga en una tarea completa y la ejecuta |
+| `/real-use:equipo <tarea>` | 6: varios agentes con roles (lentes), modelo y effort propios |
+| `/real-use:conectar` | Qué MCPs, conectores, plugins y CLIs añadir y cuáles quitar |
 | `/real-use:experto [lente]` | Criterio experto real: criterios, antipatrones y verificación |
 | `/real-use:iniciar` | 1, 3: estado en archivos, metodología, verificación |
 | `/real-use:spec` | 4: entrevista → spec → tareas |
