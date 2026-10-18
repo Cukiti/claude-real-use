@@ -47,3 +47,9 @@
 - Queda: T-025 (repetir evals cuando se reinicie el límite), T-026 (recortar plugins globales, con aprobación), T-013.
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-025"
+
+## 2026-10-18 · Evals confirmados tras el recorte (T-025)
+- Hecho: T-025. 57/57 con las descripciones recortadas y la cláusula "Usar cuando…" restaurada en hacer.
+- Queda: T-026 (recortar los plugins globales del usuario, pendiente de su aprobación) y T-013.
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-026"
