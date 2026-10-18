@@ -46,3 +46,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-025 Evals tras el recorte de descripciones · verif: `npm run evals` 57/57 ($4,27) · ✔ 2026-10-18
 
 - [x] T-026 Plugins móviles (everything-claude-code-mobile, chrisbanes-skills) solo en los 6 proyectos Android · verif: sesión real en Colmadon carga 0 skills móviles y Teikafusion 98 · copia: ~/.claude/settings.json.bak-real-use · ✔ 2026-10-18
+- [x] T-027 Aviso ✏ de cambios sin verificar (PostToolUse + Stop, primero y luego cada 3 turnos) · verif: 5 tests + sesión real "Stop says: ✏ 1 archivo cambiado…" · ✔ 2026-10-18
+- [x] T-028 menu con tablero de botones (widget con sendPrompt en la app; opciones en la terminal), tras fusionar la skill tablero · verif: tablero dibujado en la app + evals · ✔ 2026-10-18
+- [x] T-029 Skills automatizar (catálogo de mecanismos, aprobación explícita) y bot (REVIEW.md + GitHub Action oficial o workflow propio, aprende en cerrar) · verif: evals 66/66 ($4,89) · ✔ 2026-10-18
+- [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub

@@ -90,6 +90,59 @@ test("transcript ausente o roto no rompe el hook", () => {
   assert.equal(ask(roto, "hola"), "");
 });
 
+function hook(ctx, event, extra = {}, env = {}) {
+  const out = execFileSync("node", [path.join(SCRIPTS, "copiloto.js")], {
+    input: JSON.stringify({ session_id: ctx.session, cwd: ctx.dir, hook_event_name: event, ...extra }),
+    env: { ...process.env, CLAUDE_PLUGIN_DATA: ctx.data, CLAUDE_PLUGIN_OPTION_AVISOS: "", ...env },
+    encoding: "utf8",
+  });
+  return out ? JSON.parse(out).systemMessage : "";
+}
+const edit = (ctx, file) => hook(ctx, "PostToolUse", { tool_name: "Edit", tool_input: { file_path: file } });
+const bash = (ctx, command) => hook(ctx, "PostToolUse", { tool_name: "Bash", tool_input: { command } });
+const stop = (ctx) => hook(ctx, "Stop", { stop_hook_active: false });
+
+test("avisa al terminar un turno con archivos cambiados sin verificar", () => {
+  const ctx = setup();
+  assert.equal(edit(ctx, "/p/player.gd"), "", "PostToolUse no avisa");
+  edit(ctx, "/p/enemy.gd");
+  assert.match(stop(ctx), /✏ 2 archivos cambiados sin ejecutar verificación \(player\.gd, enemy\.gd\)/);
+});
+
+test("ejecutar una verificación borra la cuenta", () => {
+  const ctx = setup();
+  edit(ctx, "/p/a.ts");
+  bash(ctx, "cd app && npm test -- --run");
+  assert.equal(stop(ctx), "");
+});
+
+test("reconoce el comando de Verificación: de .cru/PROJECT.md", () => {
+  const ctx = setup({ cru: true });
+  fs.writeFileSync(path.join(ctx.dir, ".cru", "PROJECT.md"), "- Verificación: `./check-all.sh`\n");
+  edit(ctx, "/p/a.gd");
+  bash(ctx, "./check-all.sh --fast");
+  assert.equal(stop(ctx), "");
+});
+
+test("no avisa en cada turno: primero y luego cada 3", () => {
+  const ctx = setup();
+  edit(ctx, "/p/a.gd");
+  const avisos = [stop(ctx), stop(ctx), stop(ctx), stop(ctx)].map((m) => Boolean(m));
+  assert.deepEqual(avisos, [true, false, false, true]);
+});
+
+test("ignora ediciones en .cru/, stop_hook_active y nivel coste", () => {
+  const ctx = setup();
+  edit(ctx, "/p/.cru/TASKS.md");
+  assert.equal(stop(ctx), "");
+  const otro = setup();
+  edit(otro, "/p/a.gd");
+  assert.equal(hook(otro, "Stop", { stop_hook_active: true }), "");
+  const coste = setup();
+  hook(coste, "PostToolUse", { tool_name: "Write", tool_input: { file_path: "/p/b.gd" } }, { CLAUDE_PLUGIN_OPTION_AVISOS: "coste" });
+  assert.equal(hook(coste, "Stop", {}, { CLAUDE_PLUGIN_OPTION_AVISOS: "coste" }), "");
+});
+
 function start(input, env = {}) {
   const out = execFileSync("node", [path.join(SCRIPTS, "session-start.js")], {
     input: JSON.stringify(input),

@@ -87,12 +87,43 @@ El plugin trae un hook que mira cada mensaje antes de que llegue a Claude. Cuand
 | 🟡 / 🔴 Contexto | La conversación supera ~80k o ~150k tokens: cada turno reenvía todo |
 | ⏱ Caché fría | Escribes tras más de una hora en una conversación grande, o retomas una sesión grande con la caché caducada (con el coste estimado) |
 | 🔁 Correcciones | Corriges dos veces seguidas: mejor `/clear` y un prompt nuevo |
+| ✏ Sin verificar | Un turno termina con archivos cambiados y sin ejecutar tests ni build (el primero y luego cada 3) |
 | ⚙ Effort | Effort `max` para un cambio pequeño, o `low` para algo delicado |
 | 💡 Petición vaga | "arregla el menú" sin detalles: `/real-use:hacer` la completa |
 
 Se configura en `/config` → Real Use → Avisos: `todos`, `coste` (solo contexto y caché) o `ninguno`.
 
 Además, el effort se ajusta solo en las piezas del plugin: `verificar` piensa en high; `cerrar`, `menu` y `conectar` en low; cada subagente lleva el suyo.
+
+## Mapa de herramientas: cuál usar para qué
+
+Anthropic ha sacado muchas piezas. Esta es la versión corta, según la documentación de Claude Code:
+
+| Quiero… | Herramienta | Nota |
+|---|---|---|
+| Elegir en vez de escribir | Preguntas con opciones (AskUserQuestion) | En la app de escritorio son botones; todas las skills de este plugin las usan |
+| Ver el estado y actuar con un clic | Widgets en la conversación (app de escritorio y claude.ai) | `/real-use:menu` dibuja el tablero con botones que envían comandos |
+| Compartir o seguir algo desde el navegador | Artifacts | Página viva en claude.ai, privada hasta que la compartes; puede leer conectores en vivo y recibir comentarios. Sus botones no ejecutan comandos: "Copiar como prompt" |
+| Presentaciones, diseños o documentos para otros | Plantillas de artifacts: `/slides`, `/design`, Claude Docs | Se editan en claude.ai y se exportan |
+| Que algo pase siempre, sin excepción | Hooks | Deterministas y sin coste de modelo; el copiloto de este plugin es un hook |
+| Que siga hasta terminar | `/goal` + modo auto | Un modelo aparte comprueba la condición en cada turno |
+| Repetir cada cierto tiempo mientras trabajo | `/loop` | Vive en la sesión abierta |
+| Rutinas con mis archivos locales | Tareas programadas del escritorio | Necesitan la app abierta y el equipo despierto |
+| Rutinas sin mi máquina | Routines (nube) | Por horario, llamada HTTP o evento de GitHub; terminan en rama o PR |
+| Revisar cada PR | GitHub Action (`/install-github-app`) o Code Review (Team/Enterprise) | `/real-use:bot` lo configura con los criterios del proyecto |
+| Varias tareas a la vez | Sesiones paralelas con worktree, sesiones en la nube | `/real-use:paralelo` |
+| Muchos agentes coordinados | Subagentes, `/batch`, agent view, workflows dinámicos | Cada agente gasta su propio contexto: úsalos para lo que lee mucho y devuelve poco |
+| Controlar el navegador o el escritorio | Navegador integrado, Claude in Chrome, computer use | Verificación visual de UI sin instalar nada |
+| Seguir desde el móvil | Remote Control y app móvil | Aprobar y responder desde fuera |
+| Cambiar la interfaz de Claude Code | Mods (Claude Code ≥ 2.1.287) | Bandas, paneles y comandos propios; el mod `next-steps` sugiere los siguientes 3 prompts como teclas 1, 2 y 3 |
+
+### Automatizar, pero aprobando tú
+
+`/real-use:automatizar` mira lo que se repite en el proyecto (correcciones en la bitácora, commits de formato, CI que ya existe) y propone como mucho 4 automatizaciones. Cada una indica su mecanismo, lo que cuesta y cómo se desactiva. Tú marcas cuáles quieres, ves el cambio exacto y solo entonces se aplica.
+
+### Un bot de revisión que mejora solo
+
+`/real-use:bot` crea un `REVIEW.md` corto con lo que significa "roto" en tu tipo de app y los criterios de su lente, y lo enlaza desde `CLAUDE.md`. Así lo leen la GitHub Action oficial, `/code-review` y el revisor local. Corre en cada push a un PR, o antes de cada commit si trabajas sin GitHub. Y aprende: cuando algo se cuela, `/real-use:cerrar` añade la regla a la sección "Aprendido".
 
 ## Errores que queman tokens (y su arreglo)
 
@@ -141,7 +172,9 @@ El plugin `real-use` convierte esta guía en comandos:
 
 | Comando | Hábito |
 |---|---|
-| `/real-use:menu` | ¿Qué hago ahora? Las 3–4 mejores acciones para elegir, y la chuleta de comandos |
+| `/real-use:menu` | ¿Qué hago ahora? Tablero con botones (app de escritorio) u opciones (terminal), y chuleta de comandos |
+| `/real-use:automatizar` | Automatizaciones propuestas que apruebas tú: hooks, tareas programadas, routines, Actions |
+| `/real-use:bot` | Bot de revisión con los criterios del proyecto, que aprende de cada sesión |
 | `/real-use:hacer <lo que sea>` | 2, 3, 5: convierte una petición vaga en una tarea completa y la ejecuta |
 | `/real-use:equipo <tarea>` | 6: varios agentes con roles (lentes), modelo y effort propios |
 | `/real-use:conectar` | Qué MCPs, conectores, plugins y CLIs añadir y cuáles quitar |

@@ -59,3 +59,9 @@
 - Queda: T-013 (estrenar el plugin en Colmadon).
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-18 · v0.5: botones, feedback de verificación, automatizar y bot
+- Hecho: T-027 a T-029. `npm test` 35/35; evals 66/66; aviso ✏ y tablero comprobados en real.
+- Queda: T-030 (bot en un repo real), T-013 (estreno en Colmadon), T-016 (mod, requiere `claude update`).
+- Decisiones: D-007, D-008.
+- Prompt para retomar: "/real-use:siguiente T-013"

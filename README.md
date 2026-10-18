@@ -23,7 +23,9 @@ claude-real-use/
 ├── tests/                       ← tests de los scripts (npm test)
 └── plugins/real-use/            ← el plugin
     ├── skills/
-    │   ├── menu/                /real-use:menu       ¿qué hago ahora? opciones + chuleta de comandos
+    │   ├── menu/                /real-use:menu       ¿qué hago ahora? tablero con botones + chuleta
+    │   ├── automatizar/         /real-use:automatizar hooks, tareas programadas, routines, Actions (apruebas tú)
+    │   ├── bot/                 /real-use:bot        bot de revisión con REVIEW.md que aprende
     │   ├── hacer/               /real-use:hacer      cualquier petición vaga → tarea completa → hecha
     │   ├── equipo/              /real-use:equipo     agentes con roles (lentes), modelo y effort propios
     │   ├── conectar/            /real-use:conectar   MCPs, conectores, plugins y CLIs: qué añadir y qué quitar

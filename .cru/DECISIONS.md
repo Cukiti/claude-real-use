@@ -30,3 +30,13 @@
 - Opciones: inyectar consejos a Claude (additionalContext), un hook con modelo (prompt hook), heurísticas deterministas con systemMessage.
 - Elegida: heurísticas en node que solo emiten systemMessage (lo ve el usuario y no entra en el contexto) y salen una vez por sesión o por umbral. Coste: cero tokens.
 - Consecuencias: el uso de contexto se lee de la cola del transcript (el campo usage del último mensaje), que es un formato interno; si cambia, el aviso de contexto deja de salir pero no rompe nada.
+
+## D-007 · 2026-10-18 · Un solo punto de entrada visual: menu (sin skill tablero aparte)
+- Contexto: tablero y menu respondían a la misma necesidad ("¿qué hago ahora?") y cada skill cuesta contexto fijo en todas las sesiones.
+- Elegida: menu dibuja el tablero con botones cuando hay una herramienta de widgets (app de escritorio y claude.ai) y usa AskUserQuestion en la terminal.
+
+## D-008 · 2026-10-18 · Bot de revisión sobre la GitHub Action oficial + REVIEW.md
+- Contexto: el usuario quiere un revisor que mejore con cada implementación, para cualquier tipo de app.
+- Opciones: bot propio, workflow personalizado, Action oficial de /install-github-app, Code Review gestionado.
+- Elegida: recomendar la Action oficial (mantenida por Anthropic) y llevar el criterio del proyecto en REVIEW.md enlazado desde CLAUDE.md; plantilla propia como alternativa. Aprende vía el paso "Aprender" de /real-use:cerrar.
+- Consecuencias: el secreto (CLAUDE_CODE_OAUTH_TOKEN o ANTHROPIC_API_KEY) lo crea y guarda el usuario; el plugin nunca toca credenciales.

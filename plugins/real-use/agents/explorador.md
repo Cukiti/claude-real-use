@@ -1,6 +1,6 @@
 ---
 name: explorador
-description: Investigador de código de solo lectura y bajo coste (Haiku) - entiende áreas grandes o localiza código sin llenar el contexto principal. Devuelve un resumen corto con archivo:línea.
+description: Investigador de código de solo lectura y bajo coste (Haiku) para entender o localizar código sin llenar el contexto principal. Devuelve un resumen corto con archivo:línea.
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit, NotebookEdit
 model: haiku

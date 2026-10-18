@@ -1,6 +1,6 @@
 ---
 name: menu
-description: Menú de "¿qué hago ahora?" - mira el estado y ofrece las 3-4 acciones más útiles para elegir, con su coste, y la chuleta de comandos. Usar cuando no sepan por dónde seguir, qué comandos hay o qué les recomiendas.
+description: Menú y tablero de "¿qué hago ahora?" - estado del proyecto y las mejores acciones como botones, con su coste. Usar cuando no sepan por dónde seguir, pidan ver el estado, un panel o botones, o pregunten qué comandos hay.
 effort: low
 ---
 
@@ -33,13 +33,20 @@ Prioriza en este orden y quédate con las que apliquen:
 | El usuario se queja de gasto o de límites | `/real-use:ahorro` |
 | No sabe qué herramientas o MCPs usar | `/real-use:conectar` |
 
-## 3. Preguntar
+## 3. Mostrar: tablero con botones o preguntas
 
-Una sola `AskUserQuestion`, con la recomendada primero. Cada opción lleva:
-- **label**: la acción en 2–5 palabras.
-- **description**: por qué ahora y su coste relativo (bajo / medio / alto), en una línea.
+**Si tienes una herramienta para mostrar widgets en la conversación** (por ejemplo `show_widget`, en la app de escritorio o en claude.ai), dibuja un tablero compacto. Si la herramienta pide leer antes su guía (`read_me`), léela sin comentarlo. Contenido:
+1. Cabecera: proyecto, fase y barra de progreso del hito (`hechas / total`).
+2. En curso: la tarea `[~]` con su `queda:` y el botón **Continuar** → `/real-use:siguiente <ID>`.
+3. Bloqueadas: cada `[!]` con el botón **Decidir** → `Ayúdame a desbloquear <ID>: <motivo>`.
+4. Siguientes: las 3 primeras `[ ]` con el botón **Empezar** → `/real-use:siguiente <ID>`.
+5. Las acciones elegidas en el paso 2 como fila de botones, cada una con su coste (bajo/medio/alto), más **Chuleta**.
 
-Añade como última opción "Ver chuleta de comandos", salvo que ya haya 4 acciones mejores.
+Cada botón llama a `sendPrompt("<comando>")` (o al mecanismo equivalente que documente la herramienta): el usuario ve en el chat cada comando que se envía. No repitas en texto lo que muestra el tablero.
+
+**Si no la tienes** (terminal): un resumen de 5 líneas y una sola `AskUserQuestion` con las acciones, la recomendada primero. Cada opción lleva un **label** (la acción en 2–5 palabras) y una **description** (por qué ahora y su coste relativo, en una línea). Añade como última opción "Ver chuleta de comandos", salvo que ya haya 4 acciones mejores.
+
+Para compartirlo o seguirlo desde el navegador, ofrece publicarlo como artifact. En un artifact los botones no ejecutan comandos: usa "Copiar como prompt".
 
 ## 4. Ejecutar
 
@@ -58,5 +65,7 @@ Añade como última opción "Ver chuleta de comandos", salvo que ya haya 4 accio
 | Terminar el día | `/real-use:cerrar` |
 | Gastar menos tokens | `/real-use:ahorro` · `/clear` · `/compact` |
 | Elegir MCPs y herramientas | `/real-use:conectar` |
+| Automatizar algo (con tu aprobación) | `/real-use:automatizar` |
+| Un bot que revise cada PR | `/real-use:bot` |
 | Pregunta rápida sin ensuciar el contexto | `/btw <pregunta>` |
 | Cambiar cuánto piensa Claude | `/effort low/medium/high` |

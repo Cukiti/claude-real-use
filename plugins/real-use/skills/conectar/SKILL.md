@@ -1,6 +1,6 @@
 ---
 name: conectar
-description: Recomendar qué MCPs, conectores, plugins, CLIs y LSP usar en este proyecto - compara con lo conectado (qué falta y qué sobra) y da comandos exactos. Usar cuando pregunten qué MCP, conector o herramienta les conviene.
+description: Recomendar qué MCPs, conectores, plugins y CLIs usar en este proyecto - qué falta y qué sobra, con comandos exactos. Usar cuando pregunten qué MCP, conector o herramienta les conviene.
 argument-hint: "[servicio o necesidad, opcional]"
 effort: low
 ---

@@ -169,8 +169,70 @@ function advise(input, env, now = Date.now()) {
   return msgs.length ? msgs.join("\n") : null;
 }
 
+// ---- Cambios sin verificar (PostToolUse + Stop) ----
+// PostToolUse anota los archivos editados y borra la cuenta cuando se ejecuta una verificación.
+// Stop avisa si el turno terminó con archivos cambiados y sin verificar: el primer turno y luego cada 3.
+
+const VERIFICACION =
+  /\b(test|tests|pytest|vitest|jest|gradlew|gradle|xcodebuild|cargo (test|clippy|build)|go (test|vet|build)|tsc|lint|ruff|mypy|flutter (test|analyze)|godot\b.*--headless|unity\b.*-runTests|npm run (build|validate|check)|dotnet (test|build))\b/i;
+
+function verificationCommand(cwd) {
+  try {
+    const text = fs.readFileSync(path.join(cwd, ".cru", "PROJECT.md"), "utf8");
+    const m = text.match(/^\s*[-*]?\s*Verificación\s*:\s*`?([^`\n]+)`?/im);
+    return m && !m[1].startsWith("<") ? m[1].trim() : null;
+  } catch {
+    return null;
+  }
+}
+
+function track(input, env) {
+  const nivel = (env.CLAUDE_PLUGIN_OPTION_AVISOS || "todos").toLowerCase();
+  if (nivel !== "todos") return null;
+  const file = stateFile(input.session_id);
+  const state = loadState(file);
+  state.edited = state.edited || [];
+  let msg = null;
+
+  if (input.hook_event_name === "PostToolUse") {
+    const tool = input.tool_name || "";
+    const ti = input.tool_input || {};
+    if (/^(Edit|Write|MultiEdit|NotebookEdit)$/.test(tool)) {
+      const p = ti.file_path || ti.notebook_path;
+      if (p && !/[\\/]\.cru[\\/]/.test(p) && !state.edited.includes(p)) state.edited.push(p);
+    } else if (/^(Bash|PowerShell)$/.test(tool)) {
+      const cmd = String(ti.command || "");
+      const propio = verificationCommand(input.cwd || process.cwd());
+      if (VERIFICACION.test(cmd) || (propio && cmd.includes(propio))) {
+        state.edited = [];
+        state.unverifiedTurns = 0;
+      }
+    }
+  } else if (input.hook_event_name === "Stop" && !input.stop_hook_active) {
+    if (state.edited.length) {
+      state.unverifiedTurns = (state.unverifiedTurns || 0) + 1;
+      if (state.unverifiedTurns % 3 === 1) {
+        const n = state.edited.length;
+        const nombres = state.edited.slice(-3).map((p) => path.basename(p)).join(", ");
+        msg =
+          `✏ ${n} archivo${n > 1 ? "s" : ""} cambiado${n > 1 ? "s" : ""} sin ejecutar verificación (${nombres}${n > 3 ? "…" : ""}). ` +
+          "Pide la evidencia o usa /real-use:verificar antes de darlo por hecho.";
+      }
+    }
+  }
+
+  try {
+    fs.writeFileSync(file, JSON.stringify(state));
+  } catch {
+    // sin estado no hay aviso
+  }
+  return msg;
+}
+
 function main() {
-  const msg = advise(readStdin(), process.env);
+  const input = readStdin();
+  const event = input.hook_event_name;
+  const msg = event === "PostToolUse" || event === "Stop" ? track(input, process.env) : advise(input, process.env);
   if (msg) process.stdout.write(JSON.stringify({ systemMessage: msg }));
 }
 
@@ -182,4 +244,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { advise, readTranscript };
+module.exports = { advise, track, readTranscript };
