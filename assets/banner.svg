@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Claude Real Use</title>
+  <desc id="descripcion">Retoma el hilo. Termina lo que empiezas. Memoria, tareas y verificación para Claude Code.</desc>
+  <rect x="1" y="1" width="958" height="298" rx="24" fill="#101c2b" stroke="#34485e"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <rect x="40" y="40" width="4" height="28" rx="2" fill="#5eead4"/>
+    <text x="58" y="60" font-size="15" font-weight="600" letter-spacing="2" fill="#5eead4">UN SISTEMA PARA TERMINAR</text>
+    <text x="40" y="122" font-size="48" font-weight="750" fill="#f4f7fb">Claude Real Use</text>
+    <text x="40" y="170" font-size="25" font-weight="500" fill="#e8ad85">Retoma el hilo. Termina lo que empiezas.</text>
+    <text x="40" y="211" font-size="18" fill="#c3cfdc">Memoria, tareas y verificación para Claude Code.</text>
+    <text x="40" y="262" font-size="14" fill="#a6b7c9">ESTADO EN ARCHIVOS · EVIDENCIA AL TERMINAR</text>
+    <g transform="translate(752 70)">
+      <rect width="160" height="160" rx="20" fill="#172535" stroke="#34485e"/>
+      <path d="M32 45 H60 L72 57 H128 V119 H32 Z" fill="none" stroke="#5eead4" stroke-width="3" stroke-linejoin="round"/>
+      <text x="80" y="97" text-anchor="middle" font-size="24" font-weight="650" fill="#f4f7fb">.cru/</text>
+      <circle cx="128" cy="119" r="19" fill="#5eead4"/>
+      <path d="M119 119 L125 125 L137 112" fill="none" stroke="#101c2b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="460" viewBox="0 0 960 460" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">El ciclo de Real Use</title>
+  <desc id="descripcion">Iniciar, siguiente, verificar y cerrar, en ese orden. La memoria .cru/ conecta el ciclo y permite retomar en una nueva sesión.</desc>
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#5eead4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="958" height="458" rx="24" fill="#101c2b" stroke="#34485e"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <text x="40" y="47" font-size="15" font-weight="600" letter-spacing="2" fill="#5eead4">CADA SESIÓN DEJA UN SIGUIENTE PASO</text>
+    <g fill="none" stroke="#5eead4" stroke-width="2" marker-end="url(#flecha)">
+      <path d="M360 128 H598"/>
+      <path d="M756 171 V284"/>
+      <path d="M600 331 H362"/>
+      <path d="M204 288 V174"/>
+    </g>
+    <g fill="none" stroke="#51667e" stroke-width="1.5" stroke-dasharray="4 6">
+      <path d="M360 153 L415 201 M600 153 L545 201 M600 306 L545 258 M360 306 L415 258"/>
+    </g>
+    <g fill="#172535" stroke="#34485e">
+      <rect x="48" y="85" width="312" height="86" rx="14"/>
+      <rect x="600" y="85" width="312" height="86" rx="14"/>
+      <rect x="600" y="288" width="312" height="86" rx="14"/>
+      <rect x="48" y="288" width="312" height="86" rx="14"/>
+      <rect x="370" y="182" width="220" height="96" rx="18" stroke="#5eead4"/>
+    </g>
+    <g font-size="22" font-weight="650" fill="#f4f7fb" text-anchor="middle">
+      <text x="204" y="121">/real-use:iniciar</text>
+      <text x="756" y="121">/real-use:siguiente</text>
+      <text x="756" y="324">/real-use:verificar</text>
+      <text x="204" y="324">/real-use:cerrar</text>
+      <text x="480" y="220" font-size="29" fill="#5eead4">.cru/</text>
+    </g>
+    <g font-size="16" fill="#c3cfdc" text-anchor="middle">
+      <text x="204" y="149">Organiza el proyecto</text>
+      <text x="756" y="149">Ejecuta una tarea</text>
+      <text x="756" y="352">Comprueba con evidencia</text>
+      <text x="204" y="352">Guarda y prepara la vuelta</text>
+      <text x="480" y="250">Memoria del proyecto</text>
+      <text x="480" y="414" fill="#e8ad85">Nueva sesión → retoma con /real-use:siguiente</text>
+    </g>
+  </g>
+</svg>
