@@ -83,3 +83,9 @@
 - Queda: T-038 (repetir el eval de hacer, que se cortó); T-030 y T-016.
 - Aprendido: esta sesión consumió el límite rápido por una conversación muy larga y muchas baterías de evals (cada una lanza 40–60 sesiones). Las próximas mejoras van en sesiones nuevas y cortas, y los evals solo para el caso que cambia (`--case`).
 - Prompt para retomar: "/real-use:siguiente T-038"
+
+2026-10-18 · T-038: eval hacer-ficha repetido
+- Hecho: eval de un caso (4 runs, $0.85): 3/4 otra vez. El run 1 no mostró ficha (6 turnos, $0.34); la traza se borró al acabar.
+- Queda: T-038 en curso; repetir con --keep-temp para leer la traza del fallo antes de tocar la skill hacer.
+- Decisiones: no iterar a ciegas sobre la skill sin ver la traza (coste).
+- Prompt para retomar: "/real-use:siguiente T-038 — repite el eval con --keep-temp y lee trace.jsonl del run que falle"
