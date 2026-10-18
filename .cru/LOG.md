@@ -53,3 +53,9 @@
 - Queda: T-026 (recortar los plugins globales del usuario, pendiente de su aprobación) y T-013.
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-026"
+
+## 2026-10-18 · Configuración del usuario recortada (T-026)
+- Hecho: T-026, con la aprobación del usuario. Los plugins móviles quedan desactivados en el global y activados en .claude/settings.json de Deudom, Domifiao2, Fintro, Teikafusion, Wordiness e inquea. En proyectos Godot se ahorran ~5.850 tokens fijos por sesión. Copia de seguridad en ~/.claude/settings.json.bak-real-use.
+- Queda: T-013 (estrenar el plugin en Colmadon).
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-013"

@@ -42,6 +42,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-022 Aviso al reanudar una sesión grande con la caché caducada (session-start, con coste estimado) y opción avisos todos/coste/ninguno en /config · verif: tests · ✔ 2026-10-17
 - [x] T-023 Skills menu, equipo y conectar; agente especialista con lente; effort automático (verificar high; cerrar, enrutar, menu y conectar low) · verif: evals 57/57 ($4,43) · ✔ 2026-10-17
 - [x] T-024 Recortar descripciones (5.257 → ~3.560 caracteres) con presupuesto en tests, sin ": " y con cláusula "Usar…" obligatoria · verif: `npm test` 30/30 · ✔ 2026-10-17
-- [ ] T-026 Recortar la configuración global del usuario: everything-claude-code-mobile (~4.700 tokens/sesión) y chrisbanes-skills (~1.150) habilitados solo en proyectos Android · hecho: deshabilitados en ~/.claude/settings.json y habilitados en .claude/settings.json de Teikafusion · verif: /context en un proyecto Godot · requiere aprobación del usuario
 
 - [x] T-025 Evals tras el recorte de descripciones · verif: `npm run evals` 57/57 ($4,27) · ✔ 2026-10-18
+
+- [x] T-026 Plugins móviles (everything-claude-code-mobile, chrisbanes-skills) solo en los 6 proyectos Android · verif: sesión real en Colmadon carga 0 skills móviles y Teikafusion 98 · copia: ~/.claude/settings.json.bak-real-use · ✔ 2026-10-18
