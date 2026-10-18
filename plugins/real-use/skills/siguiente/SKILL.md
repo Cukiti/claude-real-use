@@ -1,6 +1,6 @@
 ---
 name: siguiente
-description: Toma la siguiente tarea de .cru/TASKS.md, propone cómo ejecutarla (modelo, effort, agente, paralelo) como opciones, la ejecuta hasta que su verificación pase y actualiza el estado. Usar cuando el usuario diga "sigue", "qué toca", "continúa" o retome un proyecto con .cru/.
+description: Continuar el proyecto - toma la siguiente tarea de .cru/TASKS.md, propone cómo hacerla, la ejecuta hasta que su verificación pase y actualiza el estado. Usar con "sigue", "qué toca", "continúa".
 argument-hint: "[ID de tarea opcional, p. ej. T-004]"
 ---
 

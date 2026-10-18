@@ -1,6 +1,6 @@
 ---
 name: conectar
-description: Recomienda qué conectores, servidores MCP, plugins, CLIs y plugins de code intelligence (LSP) usar en el proyecto actual, compara con lo que ya está conectado (lo que falta y lo que sobra) y da los comandos exactos para elegir. Usar cuando el usuario pregunte qué MCP, conector, plugin o herramienta le conviene, o cómo conectar Claude a un servicio.
+description: Recomendar qué MCPs, conectores, plugins, CLIs y LSP usar en este proyecto - compara con lo conectado (qué falta y qué sobra) y da comandos exactos. Usar cuando pregunten qué MCP, conector o herramienta les conviene.
 argument-hint: "[servicio o necesidad, opcional]"
 effort: low
 ---

@@ -41,3 +41,9 @@
 - Queda: T-013 (probar en un proyecto real).
 - Decisiones: D-006.
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-17 · Coste fijo del plugin y de la configuración
+- Hecho: T-024. Los evals detectaron una regresión real (hacer 0/9 al perder "Usar cuando…"); arreglada y protegida con un test.
+- Queda: T-025 (repetir evals cuando se reinicie el límite), T-026 (recortar plugins globales, con aprobación), T-013.
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-025"

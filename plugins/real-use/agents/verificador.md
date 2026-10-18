@@ -1,6 +1,6 @@
 ---
 name: verificador
-description: Ejecuta builds, suites de tests, linters o scripts de verificación y devuelve solo el veredicto y los fallos relevantes. Usar cuando la salida de un comando de verificación pueda ser larga, para que no entre entera en el contexto principal.
+description: Ejecuta builds, tests, linters o scripts de verificación y devuelve solo el veredicto y los fallos, para que la salida larga no entre en el contexto principal.
 tools: Bash, Read, Grep, Glob
 disallowedTools: Write, Edit, NotebookEdit
 model: sonnet

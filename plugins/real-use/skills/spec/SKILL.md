@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Convierte una idea vaga de feature en una especificación ejecutable (.cru/specs/<nombre>.md) entrevistando al usuario con opciones, y la descompone en tareas verificables. Usar para features grandes, ambiguas o que tocan varios archivos, antes de escribir código.
+description: Convertir una feature grande o ambigua en una spec ejecutable entrevistando con opciones, y descomponerla en tareas verificables, antes de programar. Usar para sistemas grandes o cuando pidan definir bien algo primero.
 argument-hint: "<idea de la feature>"
 ---
 

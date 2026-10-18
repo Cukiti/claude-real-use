@@ -1,6 +1,6 @@
 ---
 name: especialista
-description: Especialista que crea o modifica con la mirada de una lente experta (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento). Usar cuando una parte de la tarea necesita criterio experto propio y conviene hacerla en un contexto aislado; pásale la lente y la tarea concreta.
+description: Crea o modifica con la mirada de una lente experta (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento) en contexto aislado. Pásale la lente, la tarea y los archivos permitidos.
 model: inherit
 effort: medium
 color: purple

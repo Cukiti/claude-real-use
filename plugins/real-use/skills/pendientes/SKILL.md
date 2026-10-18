@@ -1,6 +1,6 @@
 ---
 name: pendientes
-description: Auditoría de cabos sueltos del proyecto. Barre TODO/FIXME/HACK, tareas abiertas en .cru/, cambios sin commit, stashes, ramas y worktrees sin merge, y los convierte en tareas priorizadas para elegir. Usar cuando el usuario sienta que "hay cosas a medias", antes de una entrega, o al retomar un proyecto abandonado.
+description: Auditar cabos sueltos - TODO/FIXME, tareas abiertas en .cru/, cambios sin commit, stashes, ramas y worktrees sin merge, convertidos en tareas. Usar cuando haya "cosas a medias", antes de una entrega o al retomar un proyecto.
 context: fork
 agent: real-use:explorador
 ---

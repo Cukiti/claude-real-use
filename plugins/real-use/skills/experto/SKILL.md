@@ -1,6 +1,6 @@
 ---
 name: experto
-description: Aplica la mirada de un experto (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento) a una tarea - no como un título ("eres un experto en…") sino con sus criterios, antipatrones y forma de verificar. Usar al crear o revisar algo donde la calidad depende de criterio experto, o cuando el usuario pida "como lo haría un experto en X".
+description: Aplicar criterio experto (diseño UI, game design, pixel art, rendimiento, seguridad, arquitectura, QA, producto, lanzamiento) con sus criterios, antipatrones y verificación. Usar cuando pidan crear o revisar algo "como un experto en X".
 argument-hint: "[lente] [crear|revisar] <tarea>"
 ---
 

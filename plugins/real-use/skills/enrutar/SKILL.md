@@ -1,6 +1,6 @@
 ---
 name: enrutar
-description: Tabla de decisión para ejecutar una tarea al menor coste que la resuelva bien - qué modelo, effort, modo (directo/plan/spec/goal), si delegar en subagente, sesión paralela, worktree o nube. Usar al decidir cómo abordar una tarea, cuando el usuario pregunte "¿cómo hago esto?" o "¿qué agente uso?".
+description: Decidir cómo ejecutar una tarea al menor coste - modelo, effort, modo (directo/plan/spec/goal), subagente, sesión paralela o nube. Usar cuando pregunten qué modelo, effort o agente usar para algo.
 effort: low
 argument-hint: "[descripción de la tarea]"
 ---

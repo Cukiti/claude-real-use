@@ -1,6 +1,6 @@
 ---
 name: menu
-description: Menú interactivo de "¿qué hago ahora?". Mira el estado del proyecto, la sesión y la configuración y ofrece las 3-4 acciones más útiles como opciones para elegir, con su coste. Usar cuando el usuario no sepa por dónde seguir, pida ayuda con los comandos, pregunte qué puede hacer o qué le recomiendas.
+description: Menú de "¿qué hago ahora?" - mira el estado y ofrece las 3-4 acciones más útiles para elegir, con su coste, y la chuleta de comandos. Usar cuando no sepan por dónde seguir, qué comandos hay o qué les recomiendas.
 effort: low
 ---
 

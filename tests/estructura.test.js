@@ -76,6 +76,29 @@ test("los evals solo esperan skills que existen y que el modelo puede invocar", 
   }
 });
 
+// Las descripciones de skills invocables y de agentes se cargan en TODAS las sesiones.
+// Presupuesto: si una crece, que sea a costa de otra (y con evals: npm run evals).
+test("presupuesto de contexto fijo: descripciones cortas", () => {
+  const files = [
+    ...fs.readdirSync(path.join(ROOT, "skills")).map((s) => path.join(ROOT, "skills", s, "SKILL.md")),
+    ...fs.readdirSync(path.join(ROOT, "agents")).map((a) => path.join(ROOT, "agents", a)),
+  ];
+  let total = 0;
+  for (const f of files) {
+    const fm = fs.readFileSync(f, "utf8").split("---")[1];
+    if (/^disable-model-invocation: true$/m.test(fm)) continue;
+    const desc = fm.match(/^description: (.+)$/m)[1];
+    const id = `${path.basename(path.dirname(f))}/${path.basename(f)}`;
+    assert.ok(desc.length <= 260, `${id}: ${desc.length} > 260`);
+    // ": " dentro de un valor YAML sin comillas es inválido para un parser estricto.
+    assert.ok(!desc.includes(": "), `${id}: la descripción contiene ": "`);
+    // Sin cláusula de disparo, el modelo no sabe cuándo invocarla (regresión real: hacer cayó a 0/9).
+    if (f.endsWith("SKILL.md")) assert.match(desc, /Usar (cuando|con|para|antes)/, `${id}: falta "Usar cuando…"`);
+    total += desc.length;
+  }
+  assert.ok(total <= 4000, `total ${total} > 4000`);
+});
+
 test("cada skill tiene name igual a su carpeta y description", () => {
   for (const dir of fs.readdirSync(path.join(ROOT, "skills"))) {
     const text = fs.readFileSync(path.join(ROOT, "skills", dir, "SKILL.md"), "utf8");

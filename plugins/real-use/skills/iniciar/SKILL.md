@@ -1,6 +1,6 @@
 ---
 name: iniciar
-description: Pone un proyecto (nuevo o existente) bajo el sistema Real Use. Detecta el tipo de proyecto, entrevista con opciones, elige metodología, crea .cru/ (PROJECT, TASKS, LOG, DECISIONS), un CLAUDE.md corto y recomienda MCPs/plugins. Usar cuando el usuario quiera organizar, arrancar o retomar un proyecto con orden.
+description: Organizar un proyecto (nuevo o existente) con Real Use - detecta el tipo, entrevista con opciones, elige metodología y crea .cru/ con tareas verificables. Usar cuando quieran organizar, arrancar o poner orden en un proyecto.
 argument-hint: "[descripción breve del proyecto]"
 ---
 

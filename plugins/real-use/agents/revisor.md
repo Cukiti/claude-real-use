@@ -1,6 +1,6 @@
 ---
 name: revisor
-description: Revisor adversarial en contexto fresco. Usar antes de dar por terminada una tarea no trivial o antes de un commit/PR - revisa el diff contra el criterio de terminado o la spec y reporta solo problemas que afectan a corrección o requisitos, con evidencia.
+description: Revisor adversarial en contexto fresco - revisa el diff contra el criterio de terminado, la spec o una lente y reporta solo problemas de corrección o requisitos, con evidencia.
 tools: Read, Grep, Glob, Bash
 disallowedTools: Write, Edit, NotebookEdit
 model: inherit

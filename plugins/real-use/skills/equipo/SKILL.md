@@ -1,6 +1,6 @@
 ---
 name: equipo
-description: Arma un equipo de agentes con roles para una tarea que cruza especialidades (p. ej. una pantalla de juego que necesita game design, UI, arte y QA) - propone quién hace qué, con qué lente, modelo y effort, y su coste, deja elegir y orquesta. Usar cuando el usuario quiera varios expertos o roles trabajando en algo, o pida "un equipo" para una tarea.
+description: Armar un equipo de agentes con roles (investigador, especialista con lente, revisor, verificador) para una tarea que cruza especialidades, con coste, y orquestarlo. Usar cuando pidan varios expertos o roles trabajando juntos.
 argument-hint: "<tarea>"
 ---
 

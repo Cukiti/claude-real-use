@@ -1,6 +1,6 @@
 ---
 name: hacer
-description: Punto de entrada único para cualquier petición, por vaga que sea. Convierte "arregla esto" o "quiero X" en una ficha de tarea completa (objetivo, terminado, verificación, alcance, cuándo parar, lente experta), pregunta solo lo que falta con opciones y la ejecuta por la ruta más barata que la resuelva bien. Usar cuando el usuario pida algo sin detallar cómo.
+description: Punto de entrada para cualquier petición vaga ("arregla esto", "quiero X", varias cosas a la vez). La convierte en tarea completa con objetivo, terminado y verificación, pregunta lo que falta y la ejecuta. Usar cuando el usuario pida algo sin detallar cómo.
 argument-hint: "<lo que quieras, en tus palabras>"
 ---
 

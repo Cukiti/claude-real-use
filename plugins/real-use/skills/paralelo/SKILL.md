@@ -1,6 +1,6 @@
 ---
 name: paralelo
-description: Reparte tareas pendientes independientes de .cru/TASKS.md en sesiones paralelas, cada una en su propio worktree y con un prompt autocontenido, sin que dos sesiones toquen los mismos archivos. Usar cuando haya varias tareas independientes y el usuario quiera avanzar más rápido.
+description: Repartir tareas independientes en sesiones paralelas, cada una en su worktree con un prompt autocontenido y sin archivos compartidos. Usar cuando quieran hacer varias tareas a la vez.
 argument-hint: "[IDs de tareas, p. ej. T-004 T-005]"
 ---
 

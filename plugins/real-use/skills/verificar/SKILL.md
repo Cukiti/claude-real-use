@@ -1,6 +1,6 @@
 ---
 name: verificar
-description: Verifica el trabajo antes de darlo por terminado. Ejecuta la verificación del proyecto (tests/build/lint/captura) con salida filtrada y lanza una revisión adversarial del diff en contexto fresco contra el criterio de terminado. Usar antes de marcar una tarea como hecha, antes de un commit/PR, o cuando el usuario pregunte "¿funciona?".
+description: Comprobar que el trabajo funciona antes de darlo por terminado - ejecuta la verificación (tests/build/captura) y una revisión adversarial del diff en contexto fresco. Usar antes de un commit/PR o cuando pregunten "¿funciona?".
 effort: high
 argument-hint: "[ID de tarea o criterio a comprobar]"
 ---
