@@ -67,13 +67,35 @@ function list(items, keep, max) {
   return shown.join("\n");
 }
 
-function lastLogEntry(text) {
+// Entrada de bitácora más reciente: la última por defecto, o la primera si la bitácora
+// pone las entradas nuevas arriba (modo "adoptar").
+function latestLogEntry(text, newestFirst = false) {
   if (!text) return null;
   const parts = text.split(/^## /m).slice(1);
   if (!parts.length) return null;
-  const last = parts[parts.length - 1].trim();
-  if (last.startsWith("<")) return null;
-  return last.split(/\r?\n/).slice(0, 6).join("\n");
+  const entry = (newestFirst ? parts[0] : parts[parts.length - 1]).trim();
+  if (entry.startsWith("<")) return null;
+  return entry
+    .split(/\r?\n/)
+    .slice(0, 6)
+    .map((l) => (Array.from(l).length > 200 ? Array.from(l).slice(0, 199).join("") + "…" : l))
+    .join("\n");
+}
+
+// Modo "adoptar": PROJECT.md apunta al seguimiento propio del proyecto.
+//   - Tareas: `Pendientes.md` …     - Bitácora: `docs/BITACORA.md` (entrada arriba) …
+function adopted(project, name) {
+  const value = field(project, name);
+  if (!value) return null;
+  const m = value.match(/`([^`]+)`/);
+  const file = (m ? m[1] : value.split(/\s+/)[0]).trim();
+  return { file, newestFirst: /arriba|primero|al principio|top|newest first/i.test(value) };
+}
+
+function headings(text, max) {
+  const hs = (text.match(/^##\s+.+$/gm) || []).map((h) => `- ${h.replace(/^##\s+/, "").trim()}`);
+  if (hs.length > max) return [...hs.slice(0, max), `- … y ${hs.length - max} más`].join("\n");
+  return hs.join("\n");
 }
 
 // Aviso al usuario (no entra en el contexto) al reanudar una sesión grande con la caché caducada.
@@ -108,8 +130,15 @@ function main() {
   if (!fs.existsSync(dir)) return emit(null, warning);
 
   const project = read(path.join(dir, "PROJECT.md"));
-  const tasks = parseTasks(read(path.join(dir, "TASKS.md")));
-  const log = lastLogEntry(read(path.join(dir, "LOG.md")));
+  const ownTasks = read(path.join(dir, "TASKS.md"));
+  const tasksRef = ownTasks == null ? adopted(project, "Tareas") : null;
+  const tasksText = ownTasks != null ? ownTasks : tasksRef && read(path.join(root, tasksRef.file));
+  const tasks = parseTasks(tasksText);
+  const logRef = adopted(project, "Bitácora");
+  const logText = logRef ? read(path.join(root, logRef.file)) : null;
+  const log = logText != null ? latestLogEntry(logText, logRef.newestFirst) : latestLogEntry(read(path.join(dir, "LOG.md")));
+  const tasksWhere = tasksRef ? tasksRef.file : ".cru/TASKS.md";
+  const logWhere = logText != null ? logRef.file : ".cru/LOG.md";
 
   const name = field(project, "Nombre") || path.basename(root);
   const lines = [`Proyecto con sistema Real Use (.cru/): ${name}.`];
@@ -123,17 +152,30 @@ function main() {
   if (verif) lines.push(`Comando de verificación: ${verif}`);
 
   const total = tasks.doing.length + tasks.todo.length + tasks.blocked.length + tasks.done;
-  lines.push(
-    `Tareas: ${tasks.done}/${total} hechas, ${tasks.doing.length} en curso, ${tasks.todo.length} pendientes, ${tasks.blocked.length} bloqueadas.`
-  );
-  if (tasks.doing.length) lines.push("En curso:\n" + list(tasks.doing, ["queda:", "sesión:"], MAX_LISTED));
-  if (tasks.blocked.length) lines.push("Bloqueadas:\n" + list(tasks.blocked, ["bloqueado por:"], MAX_LISTED));
-  if (tasks.todo.length) lines.push("Siguientes pendientes:\n" + list(tasks.todo, [], MAX_PENDING));
-  if (log) lines.push("Última entrada de .cru/LOG.md:\n" + log);
-  lines.push("El estado completo está en .cru/TASKS.md; /real-use:siguiente continúa el trabajo y /real-use:cerrar cierra la sesión.");
+  if (total) {
+    lines.push(
+      `Tareas${tasksRef ? ` (${tasksWhere})` : ""}: ${tasks.done}/${total} hechas, ${tasks.doing.length} en curso, ${tasks.todo.length} pendientes, ${tasks.blocked.length} bloqueadas.`
+    );
+    if (tasks.doing.length) lines.push("En curso:\n" + list(tasks.doing, ["queda:", "sesión:"], MAX_LISTED));
+    if (tasks.blocked.length) lines.push("Bloqueadas:\n" + list(tasks.blocked, ["bloqueado por:"], MAX_LISTED));
+    if (tasks.todo.length) lines.push("Siguientes pendientes:\n" + list(tasks.todo, [], MAX_PENDING));
+  } else if (tasksRef && tasksText) {
+    // Seguimiento adoptado sin casillas [ ]: sus secciones bastan para orientarse.
+    const hs = headings(tasksText, MAX_LISTED);
+    lines.push(`Tareas en ${tasksWhere} (seguimiento adoptado)${hs ? ", secciones:\n" + hs : "."}`);
+  } else if (tasksRef) {
+    lines.push(`Tareas: PROJECT.md apunta a ${tasksWhere}, pero ese archivo no existe.`);
+  }
+  if (log) lines.push(`Última entrada de ${logWhere}:\n` + log);
+  // La línea final dice dónde está el estado completo: nunca se recorta.
+  const final =
+    `El estado completo está en ${tasksWhere}${logWhere !== ".cru/LOG.md" ? ` y ${logWhere}` : ""}; ` +
+    "/real-use:siguiente continúa el trabajo y /real-use:cerrar cierra la sesión.";
 
-  let text = lines.join("\n");
-  if (text.length > MAX_CHARS) text = text.slice(0, MAX_CHARS) + "\n…(recortado; ver .cru/)";
+  let body = lines.join("\n");
+  const room = MAX_CHARS - final.length - 1;
+  if (body.length > room) body = body.slice(0, room - 12) + "\n…(recortado)";
+  const text = body + "\n" + final;
 
   emit(text, warning);
 }

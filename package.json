@@ -1,6 +1,6 @@
 {
   "name": "claude-real-use",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "private": true,
   "description": "Sistema de trabajo para Claude Code: plugin real-use y guía.",
   "license": "MIT",

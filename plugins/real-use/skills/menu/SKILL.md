@@ -8,6 +8,8 @@ effort: low
 
 Objetivo: que el usuario elija en lugar de pensar. Mide poco, recomienda bien y ejecuta lo que elija.
 
+**Modo adoptar**: si `.cru/PROJECT.md` tiene `- Tareas:` o `- Bitácora:`, esos archivos sustituyen a `.cru/TASKS.md` y `.cru/LOG.md`. Léelos y escríbelos con su propio formato (secciones, casillas, viñetas) y su orden (si la bitácora dice "entrada arriba", la nueva entrada va al principio). No crees `TASKS.md` ni dupliques sus entradas en `.cru/`.
+
 ## 1. Leer el estado (barato: sin leer código)
 
 - `.cru/`: si tienes el resumen del inicio de sesión, úsalo; si no, lee solo las tareas `[~]`, `[!]` y las 3 primeras `[ ]` de `.cru/TASKS.md`.

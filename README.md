@@ -116,6 +116,7 @@ Evals de resultado (`npm run evals:resultado`): la misma tarea, con el plugin y 
 | `/real-use:hacer` con una petición vaga: ficha con terminado y verificación | 1,00 | 0,00 | **+1,00** |
 | Hacer la siguiente tarea simple y actualizar `TASKS.md` | 1,00 | 1,00 | 0 |
 | Revisar un CSS con criterio de diseño | 0,88 | 0,88 | 0 |
+| Cerrar en un proyecto con seguimiento propio (bitácora con la entrada arriba) | 1,00 | 1,00 | 0, pero antes del arreglo era 0,67: el eval detectó una contradicción interna |
 
 Lectura honesta: en tareas simples Claude ya lo hace bien sin ayuda. El plugin aporta en la **continuidad entre sesiones** y en convertir peticiones vagas en trabajo verificable. Esos dos puntos son justo los que hacen que los proyectos se queden a medias.
 

@@ -99,6 +99,44 @@ test("session-start con muchas tareas sigue mostrando la bitácora", () => {
   assert.match(ctx, /Prompt para retomar/);
 });
 
+// Modo "adoptar" (hallado en Colmadón): PROJECT.md apunta al seguimiento propio del proyecto.
+function adoptedProject({ tasksFile = "Pendientes.md", tasks, log, order = "(entrada arriba)" }) {
+  const dir = project({
+    "PROJECT.md": `- Nombre: Juego\n- Tareas: \`${tasksFile}\` (adoptado)\n- Bitácora: \`docs/BITACORA.md\` ${order}\n`,
+  });
+  if (tasks != null) fs.writeFileSync(path.join(dir, tasksFile), tasks);
+  fs.mkdirSync(path.join(dir, "docs"));
+  if (log != null) fs.writeFileSync(path.join(dir, "docs", "BITACORA.md"), log);
+  return dir;
+}
+
+test("adoptar: sin casillas muestra las secciones del archivo de tareas, no 'Tareas 0/0'", () => {
+  const ctx = context(adoptedProject({ tasks: "# Lo que falta\n## 0 · Bugs\n- Tú: arreglar\n## 1 · En marcha\n" }));
+  assert.match(ctx, /Tareas en Pendientes\.md \(seguimiento adoptado\), secciones:\n- 0 · Bugs\n- 1 · En marcha/);
+  assert.doesNotMatch(ctx, /0\/0/);
+  assert.doesNotMatch(ctx, /\.cru\/TASKS\.md/);
+});
+
+test("adoptar: con casillas cuenta las tareas del archivo adoptado", () => {
+  const ctx = context(adoptedProject({ tasks: "- [x] A\n- [ ] B\n- [~] C · queda: algo\n" }));
+  assert.match(ctx, /Tareas \(Pendientes\.md\): 1\/3 hechas, 1 en curso/);
+});
+
+test("adoptar: bitácora con la entrada más reciente arriba o abajo", () => {
+  const log = "# Bitácora\n## 2026-10-17 — nueva\n- a\n## 2026-10-01 — vieja\n- b\n";
+  assert.match(context(adoptedProject({ tasks: "## x\n", log })), /Última entrada de docs\/BITACORA\.md:\n2026-10-17 — nueva/);
+  const abajo = context(adoptedProject({ tasks: "## x\n", log, order: "" }));
+  assert.match(abajo, /2026-10-01 — vieja/);
+});
+
+test("adoptar: avisa si el archivo apuntado no existe y la línea final nunca se recorta", () => {
+  const larga = "# B\n## hoy\n" + Array.from({ length: 6 }, () => "- " + "x".repeat(600)).join("\n");
+  const ctx = context(adoptedProject({ tasksFile: "NoExiste.md", log: larga }));
+  assert.match(ctx, /apunta a NoExiste\.md, pero ese archivo no existe/);
+  assert.ok(ctx.length <= 1800, String(ctx.length));
+  assert.match(ctx, /El estado completo está en NoExiste\.md y docs\/BITACORA\.md; .*cierra la sesión\.$/);
+});
+
 test("statusline muestra modelo, tarea y contexto con avisos", () => {
   const dir = project({ "TASKS.md": TASKS });
   const base = { model: { display_name: "Opus" }, workspace: { current_dir: dir } };

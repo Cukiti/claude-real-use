@@ -8,6 +8,8 @@ argument-hint: "[ID de tarea opcional, p. ej. T-004]"
 
 Tarea pedida (vacío = la siguiente lógica): $ARGUMENTS
 
+**Modo adoptar**: si `.cru/PROJECT.md` tiene `- Tareas:` o `- Bitácora:`, esos archivos sustituyen a `.cru/TASKS.md` y `.cru/LOG.md`. Léelos y escríbelos con su propio formato (secciones, casillas, viñetas) y su orden (si la bitácora dice "entrada arriba", la nueva entrada va al principio). No crees `TASKS.md` ni dupliques sus entradas en `.cru/`.
+
 ## 1. Elegir la tarea
 
 - Lee `.cru/TASKS.md` (y `.cru/PROJECT.md` solo si no tienes ya el resumen del inicio de sesión).

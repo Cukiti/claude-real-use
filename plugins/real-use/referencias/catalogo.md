@@ -26,10 +26,10 @@ Dónde buscar:
 |---|---|
 | MCP de Godot | Lanzar el editor, ejecutar el proyecto, leer la salida de depuración, crear escenas |
 | MCP de Aseprite | Pixel art y animaciones desde Claude |
-| Plugin `unity` | Skills de Unity (UI, URP, tilemaps, audio, multiplayer, IAP) |
-| Framework de tests del motor (GUT / gdUnit4 en Godot, Unity Test Framework) | Es tu `Verificación:`; sin esto Claude no puede comprobar lógica de juego |
+| Plugin `unity` | Skills de Unity (UI, URP, tilemaps, audio, multiplayer, IAP). **Solo en proyectos Unity** |
+| Framework de tests del motor (GUT / gdUnit4 en Godot, Unity Test Framework) | Es tu `Verificación:`; sin esto Claude no puede comprobar lógica de juego. **Sobra si el proyecto ya tiene pruebas propias** (scripts headless, autotest) |
 
-Consejo: deja el editor del motor y los MCPs de arte solo en los proyectos de juego (habilitación por proyecto).
+Antes de recomendar, descarta lo ya conectado (`claude mcp list`, `.mcp.json`). Consejo: deja el editor del motor y los MCPs de arte solo en los proyectos de juego (habilitación por proyecto).
 
 ## Apps móviles
 

@@ -9,7 +9,6 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 ## En curso
 
 ## Pendiente
-- [ ] T-013 Probar /real-use:iniciar en un proyecto real (p. ej. Colmadon) y ajustar las skills con lo aprendido · hecho: .cru/ creado sin correcciones manuales y una tarea cerrada con siguiente+cerrar · verif: LOG.md del proyecto con la sesión
 - [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
 
 ## Bloqueado
@@ -54,3 +53,5 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-032 cerrar acepta la verificación que reporta el usuario (anotada "según el usuario"), hallado por los evals de resultado · verif: cerrar 1,00 frente a 0,50 · ✔ 2026-10-18
 - [x] T-033 iniciar adopta el seguimiento existente (migrar / adoptar / solo lo nuevo), detecta scripts de prueba y worktrees sobrantes; hallado al preparar Colmadon · verif: tests + validate · ✔ 2026-10-18
 - [x] T-034 Plugin instalado desde Cukiti/claude-real-use (scope user) · verif: Colmadon lista 15 skills real-use · ✔ 2026-10-18
+
+- [x] T-013 Estreno en Colmadón (proyecto real): iniciar funcionó sin tocar archivos a mano; 7 fricciones encontradas y corregidas en v0.6.0 · verif: hook muestra Pendientes y la entrada más reciente de docs/BITACORA.md; evals cerrar 1,00 en modo normal y adoptado · ✔ 2026-10-18

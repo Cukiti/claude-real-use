@@ -8,6 +8,8 @@ effort: low
 
 Una sesión no termina cuando el usuario se va: termina cuando el estado está escrito. Lo que no está en `.cru/` se pierde.
 
+**Modo adoptar**: si `.cru/PROJECT.md` tiene `- Tareas:` o `- Bitácora:`, esos archivos sustituyen a `.cru/TASKS.md` y `.cru/LOG.md`. Léelos y escríbelos con su propio formato (secciones, casillas, viñetas) y su orden (si la bitácora dice "entrada arriba", la nueva entrada va al principio). No crees `TASKS.md` ni dupliques sus entradas en `.cru/`.
+
 ## 1. Inventario (comandos baratos, sin leer archivos enteros)
 
 - `git status --short` y `git stash list` (si hay git).
@@ -19,7 +21,7 @@ Una sesión no termina cuando el usuario se va: termina cuando el estado está e
 
 - `TASKS.md`: cada tarea tocada queda en un estado honesto. `[x]` solo con verificación pasada: la que ejecutaste tú en esta sesión, o la que el usuario dice que pasó (entonces márcala `[x]` con ` · verif: según el usuario`; su palabra cuenta, pero queda anotada). Toda tarea `[~]` lleva ` · queda: <siguiente paso exacto>`. Todo hallazgo de la sesión entra como `[ ]` nuevo.
 - `DECISIONS.md`: añade las decisiones tomadas que no se deducen del código.
-- `LOG.md`: añade una entrada al final con el formato de la plantilla (Hecho / Queda / Decisiones / Prompt para retomar). El prompt para retomar es una frase que el usuario pueda pegar en una sesión nueva, p. ej. `"/real-use:siguiente T-007 — ya está el test que falla en tests/save_test.gd"`.
+- Bitácora: en `.cru/LOG.md`, añade una entrada al final. En una bitácora adoptada, ponla donde diga su orden: si es "entrada arriba", justo debajo del título y antes de la entrada más reciente, copiando el formato de sus encabezados. Contenido: Hecho / Queda / Decisiones / Prompt para retomar. El prompt para retomar es una frase que el usuario pueda pegar en una sesión nueva, p. ej. `"/real-use:siguiente T-007 — ya está el test que falla en tests/save_test.gd"`.
 - Si la fase del proyecto cambió (hito cumplido), actualiza `Fase:` en `PROJECT.md`.
 
 ## 3. Aprender: corregir en la fuente

@@ -16,6 +16,7 @@ Trabajas en un contexto aislado. Devuelve solo el informe final, no el proceso.
    - `git status --short`
    - `git stash list`
    - `git branch --no-merged` y `git worktree list`
+   - Para cada worktree: quién lo creó y si sigue vivo. Los de `.claude/worktrees/agent-*` son de subagentes de Claude: sobrantes si no tienen cambios sin commit y su rama ya está mezclada o no tiene commits propios (`git -C <ruta> status --short`, `git log --oneline <rama> --not HEAD | head -3`). Los de otras herramientas (`.trabajo-*`, `.codex*`) se reportan aparte y no se proponen para borrar.
    - `git log --oneline -15` para ver en qué se trabajó últimamente.
 3. Marcadores en código, excluyendo dependencias y builds: busca `TODO|FIXME|HACK|XXX` con Grep en modo `count` primero; si hay más de 40, informa el conteo por carpeta y lista solo los 15 más relevantes.
 4. Señales de trabajo a medias: tests marcados como skip/ignore, funciones que lanzan "not implemented", archivos `*.orig`/`*.rej`.

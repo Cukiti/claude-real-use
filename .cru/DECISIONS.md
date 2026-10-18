@@ -40,3 +40,8 @@
 - Opciones: bot propio, workflow personalizado, Action oficial de /install-github-app, Code Review gestionado.
 - Elegida: recomendar la Action oficial (mantenida por Anthropic) y llevar el criterio del proyecto en REVIEW.md enlazado desde CLAUDE.md; plantilla propia como alternativa. Aprende vía el paso "Aprender" de /real-use:cerrar.
 - Consecuencias: el secreto (CLAUDE_CODE_OAUTH_TOKEN o ANTHROPIC_API_KEY) lo crea y guarda el usuario; el plugin nunca toca credenciales.
+
+## D-009 · 2026-10-18 · Contrato del modo adoptar
+- Contexto: en Colmadón, iniciar ofreció "adoptar sin migrar", pero el hook, cerrar y siguiente seguían suponiendo .cru/TASKS.md (7 fricciones).
+- Elegida: `- Tareas: \`<archivo>\`` y `- Bitácora: \`<archivo>\` (entrada arriba)` en PROJECT.md. El hook lee esos archivos (casillas si las hay; si no, las secciones) y la entrada más reciente según el orden; las skills escriben con el formato y el orden del archivo adoptado.
+- Consecuencias: un eval de resultado (cerrar-modo-adoptar) protege el orden de la bitácora.

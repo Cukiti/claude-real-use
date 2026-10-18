@@ -71,3 +71,9 @@
 - Queda: T-013 (estreno en Colmadon, la prueba que más falta), T-030 (bot en un PR real), T-016 (mod).
 - Decisiones: ninguna.
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-18 · Estreno en Colmadón (T-013) y v0.6.0
+- Hecho: T-013. iniciar adoptó el seguimiento de Colmadón (Pendientes + docs/BITACORA.md) sin migrarlo y la verificación de base pasa. Las 7 fricciones están corregidas: hook en modo adoptar, contradicción del paso 3, detección en docs/, verificación documentada en AGENTS.md, catálogo filtrado por lo conectado y por motor, cerrar con el orden de la bitácora adoptada y pendientes distinguiendo worktrees de otras herramientas. Un eval nuevo halló que cerrar escribía al final y no arriba (0,67 → 1,00).
+- Queda: T-030 (bot en un PR real), T-016 (mod, requiere `claude update`). En Colmadón: 5 worktrees sobrantes en .claude/worktrees (ofrecer /real-use:pendientes allí).
+- Decisiones: D-009.
+- Prompt para retomar: "/real-use:siguiente T-030"
