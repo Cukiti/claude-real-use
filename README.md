@@ -106,6 +106,19 @@ Al abrir una sesión nueva en el proyecto, Claude ya recibe la fase, la tarea en
 
 Los archivos `.cru/` van en git: son la memoria del proyecto, y así el equipo y las sesiones en la nube la comparten. La carpeta [.cru/](.cru/) de este repositorio es un ejemplo real.
 
+## Qué aporta, medido
+
+Evals de resultado (`npm run evals:resultado`): la misma tarea, con el plugin y sin él, puntuada por lo que queda escrito en disco o en la respuesta.
+
+| Caso | Con plugin | Sin plugin | Δ |
+|---|---|---|---|
+| Cerrar la sesión: tarea marcada y prompt para retomar en la bitácora | 1,00 | 0,50 | **+0,50** |
+| `/real-use:hacer` con una petición vaga: ficha con terminado y verificación | 1,00 | 0,00 | **+1,00** |
+| Hacer la siguiente tarea simple y actualizar `TASKS.md` | 1,00 | 1,00 | 0 |
+| Revisar un CSS con criterio de diseño | 0,88 | 0,88 | 0 |
+
+Lectura honesta: en tareas simples Claude ya lo hace bien sin ayuda. El plugin aporta en la **continuidad entre sesiones** y en convertir peticiones vagas en trabajo verificable. Esos dos puntos son justo los que hacen que los proyectos se queden a medias.
+
 ## Desarrollo
 
 ```bash

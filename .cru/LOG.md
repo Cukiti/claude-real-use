@@ -65,3 +65,9 @@
 - Queda: T-030 (bot en un repo real), T-013 (estreno en Colmadon), T-016 (mod, requiere `claude update`).
 - Decisiones: D-007, D-008.
 - Prompt para retomar: "/real-use:siguiente T-013"
+
+## 2026-10-18 · Evals de resultado: qué aporta de verdad
+- Hecho: T-031 y T-032. Con línea base sin plugin: hacer +1,00 y cerrar +0,50; siguiente y experto, 0 (Claude ya lo hace bien en tareas simples). Quitar el empujón "si una skill aplica, invócala" del system prompt de los evals de activación no cambió el 66/66.
+- Queda: T-013 (estreno en Colmadon, la prueba que más falta), T-030 (bot en un PR real), T-016 (mod).
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-013"

@@ -50,3 +50,5 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-028 menu con tablero de botones (widget con sendPrompt en la app; opciones en la terminal), tras fusionar la skill tablero · verif: tablero dibujado en la app + evals · ✔ 2026-10-18
 - [x] T-029 Skills automatizar (catálogo de mecanismos, aprobación explícita) y bot (REVIEW.md + GitHub Action oficial o workflow propio, aprende en cerrar) · verif: evals 66/66 ($4,89) · ✔ 2026-10-18
 - [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub
+- [x] T-031 Evals de resultado con línea base (4 casos) · verif: hacer Δ +1,00 · cerrar Δ +0,50 (tras arreglarlo) · siguiente y experto Δ 0 · ✔ 2026-10-18
+- [x] T-032 cerrar acepta la verificación que reporta el usuario (anotada "según el usuario"), hallado por los evals de resultado · verif: cerrar 1,00 frente a 0,50 · ✔ 2026-10-18

@@ -33,9 +33,10 @@ const CASOS = [
   ["neg-regex", null, [], "escribe una regex que valide un correo electrónico sencillo"],
 ];
 
+// Sin empujar a invocar skills: una versión anterior decía "si una skill aplica, invócala" y
+// inflaba la activación (hacer pasaba aquí y no se activaba en un caso real). Solo acorta la ejecución.
 const SISTEMA =
-  "Esto es una prueba de activación de skills en un directorio vacío. Actúa con normalidad: si una skill aplica a la petición, invócala. " +
-  "Después de invocarla no ejecutes sus pasos ni otras herramientas: responde en una línea qué harías a continuación.";
+  "El directorio de trabajo está vacío. Si usas una skill, no ejecutes sus pasos: responde en una línea qué harías a continuación.";
 
 const skillRegex = (skill) => `'"skill"\\s*:\\s*"(?:[\\w-]+:)?${skill}"'`;
 

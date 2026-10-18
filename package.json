@@ -8,6 +8,7 @@
     "test": "node --test \"tests/**/*.test.js\"",
     "validate": "claude plugin validate . && claude plugin validate ./plugins/real-use",
     "evals:generar": "node scripts/generar-evals.js",
-    "evals": "cd plugins/real-use && claude plugin eval . --ablation none --runs 3 -j 4"
+    "evals": "cd plugins/real-use && claude plugin eval . --ablation none --runs 3 -j 4",
+    "evals:resultado": "cd plugins/real-use && claude plugin eval . --eval-dir evals-resultado --scaffold --runs 3 -j 4 --allow-tools Write Edit"
   }
 }
