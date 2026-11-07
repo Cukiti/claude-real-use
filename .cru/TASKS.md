@@ -10,6 +10,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 
 ## Pendiente
 - [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
+- [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub
 
 ## Bloqueado
 - [!] T-016b Requisito del mod: Claude Code ≥ 2.1.287 · bloqueado por: versión instalada 2.1.283 (`claude update`)
@@ -48,7 +49,6 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-027 Aviso ✏ de cambios sin verificar (PostToolUse + Stop, primero y luego cada 3 turnos) · verif: 5 tests + sesión real "Stop says: ✏ 1 archivo cambiado…" · ✔ 2026-10-18
 - [x] T-028 menu con tablero de botones (widget con sendPrompt en la app; opciones en la terminal), tras fusionar la skill tablero · verif: tablero dibujado en la app + evals · ✔ 2026-10-18
 - [x] T-029 Skills automatizar (catálogo de mecanismos, aprobación explícita) y bot (REVIEW.md + GitHub Action oficial o workflow propio, aprende en cerrar) · verif: evals 66/66 ($4,89) · ✔ 2026-10-18
-- [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub
 - [x] T-031 Evals de resultado con línea base (4 casos) · verif: hacer Δ +1,00 · cerrar Δ +0,50 (tras arreglarlo) · siguiente y experto Δ 0 · ✔ 2026-10-18
 - [x] T-032 cerrar acepta la verificación que reporta el usuario (anotada "según el usuario"), hallado por los evals de resultado · verif: cerrar 1,00 frente a 0,50 · ✔ 2026-10-18
 - [x] T-033 iniciar adopta el seguimiento existente (migrar / adoptar / solo lo nuevo), detecta scripts de prueba y worktrees sobrantes; hallado al preparar Colmadon · verif: tests + validate · ✔ 2026-10-18
@@ -58,5 +58,5 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-035 Mapa visual del proyecto (scripts/mapa.js sin modelo + skill mapa, publicado como artifact) · verif: 6 tests + mapas de este repo y Colmadón publicados · ✔ 2026-10-18 · revisión: pendiente
 - [x] T-036 Entrega como compañero con visto bueno (referencias/entrega.md, estado "revisión: pendiente" en hook, menú, mapa y cerrar) y siguientes pasos siempre · verif: tests 45/45 · ✔ 2026-10-18
 - [x] T-037 Cuestionarios (formulario en widget o AskUserQuestion), stack con gratis/freemium/pago y Presupuesto:, /design en spec y /slides en cerrar · ✔ 2026-10-18
-- [~] T-038 Confirmar el eval hacer-ficha con la ficha antes de las preguntas (la última ejecución se cortó por límite de uso; antes 3/4) · hecho: 4/4 · verif: `npm run evals:resultado -- --case hacer-ficha` · 2026-10-18: otra vez 3/4 (run 1 sin ficha, 6 turnos, $0.34; traza borrada) · queda: repetir con --keep-temp y leer trace.jsonl del run que falle
+- [x] T-038 Confirmar el eval hacer-ficha con la ficha antes de las preguntas (la última ejecución se cortó por límite de uso; antes 3/4) · hecho: 4/4 · verif: `npm run evals:resultado -- --case hacer-ficha` · 2026-10-18: otra vez 3/4 (run 1 sin ficha, 6 turnos, $0.34; traza borrada) · causa: tomaba el bug por trivial y se saltaba la ficha; arreglado en skills/hacer · ✔ 2026-10-18 (4/4)
 - [x] T-039 README atractivo hecho por Codex (gpt-6.1-sol): banner y diagrama SVG en assets/, badges, emojis y hueco para GIF de demo · verif: README se ve bien en GitHub, enlaces y SVG válidos, `npm test` · ✔ 2026-10-18 · revisado ✔ 2026-10-18

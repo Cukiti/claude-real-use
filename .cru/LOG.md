@@ -89,3 +89,9 @@
 - Queda: T-038 en curso; repetir con --keep-temp para leer la traza del fallo antes de tocar la skill hacer.
 - Decisiones: no iterar a ciegas sobre la skill sin ver la traza (coste).
 - Prompt para retomar: "/real-use:siguiente T-038 — repite el eval con --keep-temp y lee trace.jsonl del run que falle"
+
+## 2026-11-07 · T-038 cerrada (el eval ya había pasado el 2026-10-18)
+- Hecho: `hacer` ya no trata un bug como trivial. "Trivial" solo si el usuario dice exactamente qué cambiar; un bug o un síntoma siempre lleva ficha. En la sesión que se cortó, `npm run evals:resultado -- --case hacer-ficha` quedó en 4/4, score 1.00, $0.48 (el informe local ya no está en disco). Hoy `npm test` 45/45 y `npm run validate` pasa (marketplace y plugin).
+- Queda: T-030 (bot en un PR real; el secreto lo guarda el usuario) y T-016 (mod, bloqueada hasta Claude Code ≥ 2.1.287; la instalada era 2.1.283). T-035 sigue con el mapa en revisión.
+- Decisiones: ninguna.
+- Prompt para retomar: "/real-use:siguiente T-030 — el secreto del bot ya está en GitHub"

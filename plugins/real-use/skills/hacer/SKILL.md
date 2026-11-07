@@ -15,7 +15,7 @@ El usuario escribe poco y elige bien entre opciones. Tu trabajo es completar lo 
 | Tipo | Señal | Ruta |
 |---|---|---|
 | Pregunta | "¿cómo…?", "¿por qué…?" | Responde. Si hay que leer mucho código, usa `real-use:explorador`. No crees tareas |
-| Trivial | El diff cabe en una frase | Hazlo y verifica. Sin ficha ni preguntas |
+| Trivial | El usuario dice exactamente qué cambiar ("renombra X a Y") | Hazlo y verifica. Sin ficha ni preguntas |
 | Bug | "falla", "no funciona", un error pegado | Ficha → reproducir con test → arreglar |
 | Feature normal | Algo nuevo y acotado | Ficha → plan corto → implementar → `/real-use:verificar` |
 | Feature grande o ambigua | Varias pantallas o sistemas, "quiero un sistema de…" | `/real-use:spec` |
@@ -40,6 +40,8 @@ Ruta:          <modo · effort · delegación, según /real-use:enrutar>
 Effort: compara el recomendado con el actual (`$CLAUDE_EFFORT` en Bash, `$env:CLAUDE_EFFORT` en PowerShell). Si no coinciden, añade una línea a la ficha: `Effort: actual <x> → recomendado <y> (/effort <y>)`. Claude no puede cambiar el effort de la sesión; el usuario sí, y cambiarlo no rompe la caché.
 
 ## 3. Mostrar la ficha y preguntar solo lo que falta
+
+Un bug o un síntoma ("a veces se pierde…") nunca es trivial, aunque el arreglo parezca obvio: lleva ficha.
 
 **Primero muestra la ficha** (7 líneas, con `?` en los huecos), para que el usuario vea qué entendiste antes de contestar nada. Después, si quedan huecos que cambian el resultado (no detalles que decides tú), haz **una sola** ronda de `AskUserQuestion`, máximo 3 preguntas, cada una con 2–4 opciones y tu recomendación primero. Lo típico: qué significa terminado, qué enfoque de entre 2–3, qué queda fuera.
 
