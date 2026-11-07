@@ -1,4 +1,6 @@
 {
+  "description": "Hooks de Real Use y el mod de la banda de tarea actual",
+  "modules": ["./tarea-actual.mjs"],
   "hooks": {
     "SessionStart": [
       {

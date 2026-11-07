@@ -9,11 +9,18 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 ## En curso
 
 ## Pendiente
-- [ ] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test`
 - [ ] T-030 Probar /real-use:bot en un repo con PRs (CI comenta un PR de prueba) · hecho: comentario del bot en un PR · verif: `gh pr view <n> --comments` · requiere que el usuario guarde el secreto en GitHub
+- [ ] T-042 Instrucción única de retoma, y `siguiente` y `menu` la siguen · hecho: el agente muestra la salida del script y, si hay desfase, pregunta antes de editar · verif: `npm test` · spec: specs/retomar-entre-agentes.md
+- [ ] T-043 Adaptadores de Codex y Gemini con la misma salida que el script · hecho: `codex-resume.cjs` imprime lo mismo que `retomar.js` en un proyecto de prueba · verif: `npm test` · spec: specs/retomar-entre-agentes.md
+- [ ] T-044 Prueba manual: cerrar en Claude y abrir el mismo repo en Cursor · hecho: la primera respuesta nombra la tarea pendiente y la fase sin que el usuario explique el contexto · verif: anotado en `.cru/LOG.md` · spec: specs/retomar-entre-agentes.md
+- [ ] T-045 El resumen no toma por visto bueno la frase "revisión: pendiente" cuando va dentro del título · hecho: T-036 no sale en "Esperando el visto bueno" · verif: `npm test`
+- [ ] T-046 Identidad Real Use y la regla de que la persona decide · hecho: `identidad.md` tiene la paleta y la plantilla `AGENTS.md` dice que la persona decide · verif: `npm test` · spec: specs/crear-producto.md
+- [ ] T-047 Selector de juego, móvil, web y escritorio · hecho: juego recomienda Godot y, si el comando no está, lo dice sin afirmar que el proyecto corre · verif: `npm test` · spec: specs/crear-producto.md
+- [ ] T-048 Crear `.cru/` desde la categoría sin pisarlo si ya existe · hecho: la segunda pasada lista los huecos y deja `PROJECT.md` igual · verif: `npm test` · spec: specs/crear-producto.md
+- [ ] T-049 Actualización que solo propone guías de Anthropic, OpenAI y Gemini · hecho: con un fixture escribe la propuesta y no modifica las skills · verif: `npm test` · spec: specs/crear-producto.md
+- [ ] T-050 Prueba manual: elegir Juego y ver la recomendación · hecho: se ve Godot, vertical slice y si `godot` está instalado · verif: anotado en `.cru/LOG.md` · spec: specs/crear-producto.md
 
 ## Bloqueado
-- [!] T-016b Requisito del mod: Claude Code ≥ 2.1.287 · bloqueado por: versión instalada 2.1.283 (`claude update`)
 
 ## Hecho
 - [x] T-001 Investigar documentación y blogs de Anthropic · ✔ 2026-10-17
@@ -60,3 +67,7 @@ Cada tarea: ID · título · hecho: <criterio> · verif: <cómo se comprueba>
 - [x] T-037 Cuestionarios (formulario en widget o AskUserQuestion), stack con gratis/freemium/pago y Presupuesto:, /design en spec y /slides en cerrar · ✔ 2026-10-18
 - [x] T-038 Confirmar el eval hacer-ficha con la ficha antes de las preguntas (la última ejecución se cortó por límite de uso; antes 3/4) · hecho: 4/4 · verif: `npm run evals:resultado -- --case hacer-ficha` · 2026-10-18: otra vez 3/4 (run 1 sin ficha, 6 turnos, $0.34; traza borrada) · causa: tomaba el bug por trivial y se saltaba la ficha; arreglado en skills/hacer · ✔ 2026-10-18 (4/4)
 - [x] T-039 README atractivo hecho por Codex (gpt-6.1-sol): banner y diagrama SVG en assets/, badges, emojis y hueco para GIF de demo · verif: README se ve bien en GitHub, enlaces y SVG válidos, `npm test` · ✔ 2026-10-18 · revisado ✔ 2026-10-18
+- [x] T-016b Requisito del mod: Claude Code ≥ 2.1.287 · verif: `claude --version` → 2.1.303 · ✔ 2026-11-07
+- [x] T-016 Mod "tarea actual": banda sobre el prompt con la tarea [~] y el % de contexto · hecho: se ve en terminal y en escritorio · verif: `claude plugin test` 3/3 · ✔ 2026-11-07 · revisado ✔ 2026-11-07
+- [x] T-040 Script único de retoma (`scripts/retomar.js`) y el hook de Claude lo usa · hecho: el resumen nombra fase, conteos, tarea en curso o siguiente y la última bitácora, también con archivos adoptados · verif: `npm test` 49/49 · ✔ 2026-11-07 · revisado ✔ 2026-11-07 · spec: specs/retomar-entre-agentes.md
+- [x] T-041 Aviso de desfase, sin escribir archivos · hecho: git con cambios sin commit, o una bitácora que nombra una tarea ya `[x]`, añade una línea `Desfase:` · verif: `npm test` 52/52 · ✔ 2026-11-07 · revisado ✔ 2026-11-07 · spec: specs/retomar-entre-agentes.md

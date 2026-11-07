@@ -129,6 +129,105 @@ test("adoptar: bitácora con la entrada más reciente arriba o abajo", () => {
   assert.match(abajo, /2026-10-01 — vieja/);
 });
 
+test("retomar nombra fase, conteos, siguiente paso y bitácora, y el hook usa esa salida", () => {
+  const dir = project({
+    "PROJECT.md": PROJECT,
+    "TASKS.md": TASKS,
+    "LOG.md": "## 2026-10-17 · Guardado\n- Hecho: T-002\n- Queda: inventario\n",
+  });
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.match(out, /^Real Use retomar 0\.7\.0\n/);
+  assert.match(out, /Fase: Vertical slice/);
+  assert.match(out, /Tareas: 2\/8 hechas, 1 en curso, 4 pendientes, 1 bloqueadas/);
+  assert.match(out, /Siguiente paso: T-003 Guardado local · queda: inventario/);
+  assert.match(out, /Última entrada de \.cru\/LOG\.md:\n2026-10-17 · Guardado/);
+  assert.equal(out, execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" }));
+  assert.match(context(dir), /^Real Use retomar 0\.7\.0/);
+  assert.match(context(dir), /Siguiente paso: T-003 Guardado local/);
+});
+
+test("retomar sin .cru/ imprime una sola línea", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "nocru-"));
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.equal(out, "No hay .cru/ en este proyecto.\n");
+});
+
+test("retomar con seguimiento adoptado lee esas rutas y no sustituye un archivo ausente", () => {
+  const dir = project({
+    "PROJECT.md": "- Nombre: Juego\n- Fase: Demo\n- Tareas: `Pendientes.md`\n- Bitácora: `docs/BITACORA.md` (entrada arriba)\n",
+    "LOG.md": "NO-DEBE-SALIR\n",
+    "TASKS.md": "- [ ] NO-DEBE-SALIR-TAREA\n",
+  });
+  fs.mkdirSync(path.join(dir, "docs"));
+  fs.writeFileSync(path.join(dir, "Pendientes.md"), "- [~] C · queda: algo\n- [ ] B\n- [x] A\n");
+  fs.writeFileSync(path.join(dir, "docs", "BITACORA.md"), "## 2026-11-07 · arriba\n- hoy\n## 2026-10-01 · abajo\n- ayer\n");
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.match(out, /Fase: Demo/);
+  assert.match(out, /Tareas \(Pendientes\.md\): 1\/3 hechas, 1 en curso, 1 pendientes, 0 bloqueadas/);
+  assert.match(out, /Siguiente paso: C · queda: algo/);
+  assert.match(out, /2026-11-07 · arriba/);
+  assert.doesNotMatch(out, /NO-DEBE-SALIR/);
+
+  const falta = project({
+    "PROJECT.md": "- Nombre: Juego\n- Tareas: `NoExiste.md`\n- Bitácora: `docs/NO.md`\n",
+    "LOG.md": "NO-DEBE-SALIR\n",
+    "TASKS.md": "- [ ] NO-DEBE-SALIR-TAREA\n",
+  });
+  const aviso = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), falta], { encoding: "utf8" });
+  assert.match(aviso, /apunta a NoExiste\.md, pero ese archivo no existe/);
+  assert.match(aviso, /apunta a docs\/NO\.md, pero ese archivo no existe/);
+  assert.doesNotMatch(aviso, /NO-DEBE-SALIR/);
+});
+
+test("retomar rechaza una ruta adoptada fuera del proyecto", () => {
+  const dir = project({ "PROJECT.md": "- Nombre: X\n- Tareas: `../fuera.md`\n" });
+  assert.throws(
+    () => execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" }),
+    (error) => {
+      assert.equal(error.status, 1);
+      assert.match(error.stderr, /fuera del proyecto: \.\.\/fuera\.md/);
+      return true;
+    }
+  );
+});
+
+function git(dir, args) {
+  return execFileSync("git", args, {
+    cwd: dir,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+    windowsHide: true,
+  });
+}
+
+test("retomar avisa de los caminos sin commit y no escribe archivos", () => {
+  const dir = project({ "PROJECT.md": "- Nombre: Git\n- Fase: Prueba\n", "TASKS.md": "- [ ] T-001 Una\n" });
+  git(dir, ["init"]);
+  fs.writeFileSync(path.join(dir, "nuevo.txt"), "x");
+  const before = fs.readFileSync(path.join(dir, ".cru", "TASKS.md"), "utf8");
+  const n = git(dir, ["status", "--short"]).split(/\r?\n/).filter((line) => line.trim()).length;
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.match(out, new RegExp(`Desfase: ${n} caminos sin commit\\.`));
+  assert.equal(fs.readFileSync(path.join(dir, ".cru", "TASKS.md"), "utf8"), before);
+});
+
+test("retomar avisa si la bitácora nombra una tarea ya hecha", () => {
+  const dir = project({
+    "PROJECT.md": "- Nombre: Log\n",
+    "TASKS.md": "- [x] T-001 Hecha\n- [ ] T-002 Sigue\n",
+    "LOG.md": "## 2026-11-07 · corte\n- Hecho: T-001 quedó atrás\n- Queda: T-001 y también T-002\n- Prompt para retomar: sigue con T-002\n",
+  });
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.match(out, /Desfase: la bitácora todavía habla de T-001 y en las tareas ya está hecha\./);
+  assert.doesNotMatch(out, /habla de T-002/);
+});
+
+test("retomar sin repositorio git propio no inventa un desfase de caminos", () => {
+  const dir = project({ "PROJECT.md": "- Nombre: Solo\n", "TASKS.md": "- [ ] T-001 Una\n" });
+  const out = execFileSync("node", [path.join(SCRIPTS, "retomar.js"), dir], { encoding: "utf8" });
+  assert.doesNotMatch(out, /caminos sin commit/);
+});
+
 test("adoptar: avisa si el archivo apuntado no existe y la línea final nunca se recorta", () => {
   const larga = "# B\n## hoy\n" + Array.from({ length: 6 }, () => "- " + "x".repeat(600)).join("\n");
   const ctx = context(adoptedProject({ tasksFile: "NoExiste.md", log: larga }));

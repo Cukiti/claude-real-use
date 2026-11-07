@@ -250,4 +250,5 @@ Una vez por semana: `/real-use:pendientes` (que no se acumule nada) y `/real-use
 - [Building effective agent automations](https://claude.dev/blog/building-effective-agent-automations/)
 - [Claude Code in the cloud: a field guide](https://claude.dev/blog/claude-code-in-the-cloud/)
 - [Getting started with Claude Code mods](https://claude.dev/blog/getting-started-with-claude-code-mods/)
+- [Create a mod](https://code.claude.com/docs/en/plugins/mods/create) · [Mods reference](https://code.claude.com/docs/en/plugins/mods/reference)
 - [Artículos de claude.com](https://claude.com/es/resources/articles)

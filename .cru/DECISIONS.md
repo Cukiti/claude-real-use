@@ -45,3 +45,15 @@
 - Contexto: en Colmadón, iniciar ofreció "adoptar sin migrar", pero el hook, cerrar y siguiente seguían suponiendo .cru/TASKS.md (7 fricciones).
 - Elegida: `- Tareas: \`<archivo>\`` y `- Bitácora: \`<archivo>\` (entrada arriba)` en PROJECT.md. El hook lee esos archivos (casillas si las hay; si no, las secciones) y la entrada más reciente según el orden; las skills escriben con el formato y el orden del archivo adoptado.
 - Consecuencias: un eval de resultado (cerrar-modo-adoptar) protege el orden de la bitácora.
+
+## D-010 · 2026-11-07 · Un solo resumen para cualquier agente
+- Contexto: el usuario quiere abrir el mismo proyecto en Claude, Cursor, Codex o Gemini y seguir desde donde se quedó. En la entrevista eligió solo el resumen al abrir; dejó fuera una nube y portar hooks, widgets y mods; y pidió cubrir la sesión cortada, las copias distintas de las instrucciones y el seguimiento adoptado.
+- Opciones: que cada skill redacte su propio resumen; un archivo de traspaso escrito al cerrar; un script único que todos ejecutan.
+- Elegida: `scripts/retomar.js` es el único resumen. Las skills solo lo ejecutan y muestran su salida. Si hay desfase entre git y la bitácora, el script lo dice y no edita nada; el agente pregunta antes de seguir. La versión impresa distingue una copia vieja. No hay instalador para los cuatro agentes.
+- Consecuencias: spec en `.cru/specs/retomar-entre-agentes.md`. El formato de `TASKS.md` no cambia.
+
+## D-011 · 2026-11-07 · La persona decide; la app recomienda y propone
+- Contexto: el usuario quiere una aplicación para crear cualquier producto (web, móvil, escritorio, juego), con identidad propia, al día con Anthropic, OpenAI y Gemini, y que otra IA pueda seguir el trabajo. En la entrevista pidió las cuatro acciones y dejó fuera instalar motores, reescribirse sola y una plantilla por cada lenguaje.
+- Opciones: una ventana nueva; que la app elija el stack sin preguntar; que se actualice sola. Frente a eso, el mismo cuestionario en cada agente, la persona confirma, y un comando que solo propone.
+- Elegida: cuatro categorías con una recomendación cada una. La creación escribe `.cru/` y `AGENTS.md`. La paleta propia es tinta `#1B242C`, papel `#F3EFE4`, camino `#0E6B66`, aviso `#C9842A`. Las guías nuevas no pisan una decisión guardada.
+- Consecuencias: spec en `.cru/specs/crear-producto.md`. No hay cuentas ni nube. `metodologias.md` y `catalogo.md` siguen siendo el detalle; no se duplican.
