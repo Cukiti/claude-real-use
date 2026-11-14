@@ -29,3 +29,5 @@ Agrupa en:
 - **Deuda marcada en código** (TODO/FIXME), con `archivo:línea`.
 
 Para cada grupo, propón las tareas a añadir a `.cru/TASKS.md` en el formato `- [ ] T-xxx título · hecho: … · verif: …`. No edites archivos: la sesión principal decidirá con el usuario cuáles añadir.
+
+Detalle de los grupos: lee `${CLAUDE_PLUGIN_ROOT}/referencias/grupos-pendientes.md`. Remember to always show the summary to the user first.
