@@ -13,3 +13,6 @@ Estado del proyecto y tareas: .cru/ (sistema Real Use).
 - Las skills deben ser cortas; el detalle va en `plugins/real-use/referencias/` y se lee con `${CLAUDE_PLUGIN_ROOT}` solo cuando hace falta.
 - Toda decisión al usuario se presenta con AskUserQuestion, opción recomendada primero.
 - Nada de afirmaciones sobre Claude Code sin fuente en la documentación oficial; las fuentes van en GUIA.md.
+
+## Revisión
+- Al revisar código, aplica REVIEW.md.
