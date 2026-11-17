@@ -78,6 +78,22 @@ test("los evals solo esperan skills que existen y que el modelo puede invocar", 
 
 // Las descripciones de skills invocables y de agentes se cargan en TODAS las sesiones.
 // Presupuesto: si una crece, que sea a costa de otra (y con evals: npm run evals).
+test("siguiente y menu siguen la instrucción única de retoma", () => {
+  const instr = fs.readFileSync(path.join(ROOT, "instrucciones", "retomar.md"), "utf8");
+  assert.match(instr, /scripts\/retomar\.js/);
+  assert.match(instr, /tal cual/);
+  assert.match(instr, /no pidas al usuario que cuente/i);
+  assert.match(instr, /Desfase:/);
+  assert.match(instr, /antes de editar/);
+  for (const skill of ["siguiente", "menu"]) {
+    const text = fs.readFileSync(path.join(ROOT, "skills", skill, "SKILL.md"), "utf8");
+    assert.match(text, /instrucciones\/retomar\.md/);
+    assert.match(text, /tal cual/);
+    assert.match(text, /Desfase:/);
+    assert.match(text, /antes de editar/);
+  }
+});
+
 test("presupuesto de contexto fijo: descripciones cortas", () => {
   const files = [
     ...fs.readdirSync(path.join(ROOT, "skills")).map((s) => path.join(ROOT, "skills", s, "SKILL.md")),
@@ -106,4 +122,14 @@ test("cada skill tiene name igual a su carpeta y description", () => {
     const desc = text.match(/^description: (.+)$/m);
     assert.ok(desc && desc[1].length <= 1536, `${dir}: description ausente o > 1536`);
   }
+});
+
+test("identidad Real Use: paleta y la regla de que la persona decide", () => {
+  const id = fs.readFileSync(path.join(ROOT, "referencias", "identidad.md"), "utf8");
+  for (const hex of ["#1B242C", "#F3EFE4", "#0E6B66", "#C9842A"]) assert.match(id, new RegExp(hex, "i"));
+  for (const nombre of ["tinta", "papel", "camino", "aviso"]) assert.match(id, new RegExp(nombre, "i"));
+  assert.match(id, /la persona decide/i);
+  const agents = fs.readFileSync(path.join(ROOT, "plantillas", "AGENTS.md"), "utf8");
+  assert.match(agents, /la persona decide/i);
+  assert.match(agents, /sin preguntar/i);
 });

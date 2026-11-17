@@ -57,3 +57,9 @@
 - Opciones: una ventana nueva; que la app elija el stack sin preguntar; que se actualice sola. Frente a eso, el mismo cuestionario en cada agente, la persona confirma, y un comando que solo propone.
 - Elegida: cuatro categorías con una recomendación cada una. La creación escribe `.cru/` y `AGENTS.md`. La paleta propia es tinta `#1B242C`, papel `#F3EFE4`, camino `#0E6B66`, aviso `#C9842A`. Las guías nuevas no pisan una decisión guardada.
 - Consecuencias: spec en `.cru/specs/crear-producto.md`. No hay cuentas ni nube. `metodologias.md` y `catalogo.md` siguen siendo el detalle; no se duplican.
+
+## D-012 · 2026-11-14 · Modelo y effort automáticos por niveles de agente
+- Contexto: el usuario quiere que Haiku, Sonnet, Opus y Fable se elijan solos con el effort recomendado, no como recomendación, y controlar sus límites.
+- Opciones: hook que cambie el modelo (imposible: los hooks no pueden); skills con `model` (solo valen un turno); agente principal fijo; agentes por nivel.
+- Elegida: skills y subagentes fijan su modelo y effort; cinco agentes por nivel (Haiku low, Sonnet medium, Opus medium, Opus xhigh, Fable high solo al escalar) elegidos por `consumo.js`. Perfil ahorro/equilibrado/calidad en `PROJECT.md`. Fable solo tras 2 fallos y con pregunta previa. Se muestra en estado y `LOG.md`.
+- Consecuencias: spec en `.cru/specs/consumo-automatico.md`. Se usan agentes por nivel porque `effort` por llamada exige Claude Code 2.1.292+ y está instalada la 2.1.283.

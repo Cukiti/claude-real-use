@@ -25,6 +25,8 @@ Descripción que dio el usuario: $ARGUMENTS
 
 El usuario prefiere elegir a redactar. Sigue `${CLAUDE_PLUGIN_ROOT}/referencias/cuestionarios.md` (bancos "Objetivo" y "Producto según el tipo"): en la app de escritorio, un único formulario en un widget; en la terminal, `AskUserQuestion` con 2–4 opciones por pregunta, tu recomendación primero y marcada "(Recomendado)". Máximo dos rondas. No preguntes lo que ya dedujiste: confírmalo como opción recomendada.
 
+Si el usuario quiere empezar un producto desde cero, ofrece primero las cuatro categorías (juego, móvil, web, escritorio; la recomendada primero) y ejecuta `node ${CLAUDE_PLUGIN_ROOT}/scripts/crear-producto.js <directorio> <categoria>`. Muestra su salida tal cual. Si trae `Aviso:`, di que falta ese comando, que la primera tarea es instalarlo él y no afirmes que el proyecto corre. Detalle en `${CLAUDE_PLUGIN_ROOT}/referencias/categorias.md`. Cuando la persona confirma, ejecuta el mismo comando con `--crear`: escribe `.cru/` y `AGENTS.md` solo con lo que falta y, si `.cru/PROJECT.md` ya existe, no lo pisa y lista los huecos.
+
 Ronda 1 (lo esencial):
 1. Tipo de producto y plataforma (si no es obvio).
 2. Metodología: ofrece las 2–3 que encajan según `${CLAUDE_PLUGIN_ROOT}/referencias/metodologias.md` (léelo antes de preguntar).

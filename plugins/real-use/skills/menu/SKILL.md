@@ -12,6 +12,7 @@ Objetivo: que el usuario elija en lugar de pensar. Mide poco, recomienda bien y 
 
 ## 1. Leer el estado (barato: sin leer código)
 
+- Si no tienes el resumen del inicio de sesión, sigue `${CLAUDE_PLUGIN_ROOT}/instrucciones/retomar.md`: muestra la salida del script tal cual y, si contiene `Desfase:`, pregunta antes de editar.
 - `.cru/`: si tienes el resumen del inicio de sesión, úsalo; si no, lee solo las tareas `[~]`, `[!]` y las 3 primeras `[ ]` de `.cru/TASKS.md`.
 - `git status --short | head -20` y `git log --oneline -3` (si hay git).
 - Effort actual: `echo $CLAUDE_EFFORT` (en PowerShell: `$env:CLAUDE_EFFORT`).

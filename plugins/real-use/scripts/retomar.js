@@ -44,7 +44,7 @@ function parseTasks(text) {
     if (!m) continue;
     const mark = m[1].toLowerCase();
     const body = m[2].trim();
-    if (/revisi[oó]n:\s*pendiente/i.test(body)) out.review.push(body);
+    if (body.split(" · ").slice(1).some((f) => /^revisi[oó]n:\s*pendiente/i.test(f.trim()))) out.review.push(body);
     if (mark === "~") out.doing.push(body);
     else if (mark === "!") out.blocked.push(body);
     else if (mark === "x") out.done++;
@@ -84,9 +84,18 @@ function latestLogEntry(text, newestFirst = false) {
     .join("\n");
 }
 
+function realDir(p) {
+  // Resuelve rutas cortas 8.3 de Windows (RUNNER~1) y enlaces; si falla, la ruta tal cual.
+  try {
+    return fs.realpathSync.native(path.resolve(p));
+  } catch {
+    return path.resolve(p);
+  }
+}
+
 function sameDir(a, b) {
-  const left = path.resolve(a);
-  const right = path.resolve(b);
+  const left = realDir(a);
+  const right = realDir(b);
   return process.platform === "win32" ? left.toLowerCase() === right.toLowerCase() : left === right;
 }
 

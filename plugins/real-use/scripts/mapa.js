@@ -60,7 +60,7 @@ function parseTasks(text) {
     if (!m) continue;
     const parts = m[2].split(" · ");
     const task = { title: parts[0].trim(), extra: parts.slice(1) };
-    if (/revisi[oó]n:\s*pendiente/i.test(m[2])) t.review.push(task);
+    if (task.extra.some((f) => /^revisi[oó]n:\s*pendiente/i.test(f.trim()))) t.review.push(task);
     const mark = m[1].toLowerCase();
     if (mark === "~") t.doing.push(task);
     else if (mark === "!") t.blocked.push(task);

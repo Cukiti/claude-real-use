@@ -1,0 +1,8 @@
+[
+  { "id": "claude-best-practices", "proveedor": "Anthropic", "url": "https://code.claude.com/docs/en/best-practices", "temas": ["verificación", "contexto", "effort", "subagente", "CLAUDE.md"] },
+  { "id": "claude-skills", "proveedor": "Anthropic", "url": "https://code.claude.com/docs/en/skills", "temas": ["skill", "descripción"] },
+  { "id": "claude-hooks", "proveedor": "Anthropic", "url": "https://code.claude.com/docs/en/hooks", "temas": ["hook"] },
+  { "id": "claude-costs", "proveedor": "Anthropic", "url": "https://code.claude.com/docs/en/costs", "temas": ["coste", "consumo", "modelo"] },
+  { "id": "openai-codex-best-practices", "proveedor": "OpenAI", "url": "https://developers.openai.com/codex/learn/best-practices", "temas": ["AGENTS.md", "verificación", "contexto", "skill"] },
+  { "id": "gemini-cli-gemini-md", "proveedor": "Gemini", "url": "https://geminicli.com/docs/cli/gemini-md/", "temas": ["GEMINI.md", "AGENTS.md", "contexto"] }
+]
